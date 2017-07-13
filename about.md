@@ -1,10 +1,10 @@
 ---
 layout: page
-title: About
+title: Sobre mí
 ---
 
-Hello.
+Hola!
 
-This will be your About page. Anything about you, it should be written here in details. You may describe your bio here like who you are, what you do, your intention, social site hyperlinks and how people can contact you, etc.
+Soy estudiante de Ingeniería Civil Informática de la UTFSM. Muy autodidacta: me gusta la música, estar con amigos, programar andar en moto, trotar y muchas diversas cosas de forma esporádica.
 
-**Less is more..**
+Decidí escribir aquí lo que aprendo para no olvidarlo y de pasada ayudar al resto.
