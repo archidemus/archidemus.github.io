@@ -1,13 +1,13 @@
 # Site Info
-title:              "Un informático corioso"
-description:        "Escribo lo que aprendo para que no se me olvide"
+title:              "Un informático curioso"
+description:        "Comparto lo que aprendo para que no se me olvide"
 google_verify:      epFgX0s_0RM3CdjwFcsewfXzPov2g8s9ZBOLyaIUH-o # Put your Google Verification here
-google_analytics:   UA-XXXXXXX-X # Put your Google Analytics code
+google_analytics:   UA-102495783-1 # Put your Google Analytics code
 
 # Author Info
-author_name:        "Ignacio Norambuena" # Your name here
+author_name:        "Archidemus" # Your name here
 author_email:       inorambuenaa@gmail.com # Your email here
-author_gravatar:    2b38b1b0e7e08b69379bd61582adf0c8 # Your Gravatar md5 hash here for logo
+author_gravatar:    d9eac707361d3b781cf6d66d60ff01f5 # Your Gravatar md5 hash here for logo
 twitter_username:   archidemus # Your Twitter username here
 github_username:    archidemus # Your GitHub username here
 
