@@ -1,12 +1,12 @@
 # Site Info
-title:              "Un informático curioso"
+title:              "Archidemus | Cosas Informáticas"
 description:        "Comparto lo que aprendo para que no se me olvide"
 google_analytics:   UA-102495783-1 # Put your Google Analytics code
 
 # Author Info
 author_name:        "Archidemus" # Your name here
 author_email:       inorambuenaa@gmail.com # Your email here
-author_gravatar:    d9eac707361d3b781cf6d66d60ff01f5 # Your Gravatar md5 hash here for logo
+author_gravatar:    3911aa470bacd82d3ab1d9ccbe11d2b8 # Your Gravatar md5 hash here for logo
 twitter_username:   archidemus # Your Twitter username here
 github_username:    archidemus # Your GitHub username here
 
