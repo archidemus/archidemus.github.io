@@ -4,15 +4,19 @@ permalink: /categories/
 title: Categorías
 ---
 
+<div class="page-navigation">
+  Ordenar por: <a class="home" href="{{site.baseurl}}/" title="inicio">Fecha</a> | <b>Categoría</b>
+</div>
+
 <section>
 {% for category in site.categories %}
   {% capture category_name %}{{ category | first }}{% endcapture %}
-  <h3>{{ post.date | date: '%Y' }} &#172;</h3>
+  <h3>{{category_name}}</h3>
   {% for post in site.categories[category_name] %}
     <ul>
       <li>
         <div class="post-date">
-          <span>{{ post.date | date: "%d %b" }}</span>
+          <span>{{ post.date | date: "%d %b %Y" }}</span>
         </div>
         <div class="title">
           <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
