@@ -1,6 +1,6 @@
 ---
 title: Cómo hacer una pantalla de inicio o splash screen.
-updated: 2017-07-22 10:49
+updated: 2017-07-30 10:49
 categories: Android
 ---
 
