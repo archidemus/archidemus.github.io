@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+
+	<head>
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+	<title>Cómo hacer una pantalla de inicio o splash screen. · Archidemus | Cosas Informáticas</title>
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@archidemus" />
+<meta name="twitter:title" content="Cómo hacer una pantalla de inicio o splash screen." />
+<meta name="twitter:description" content="¿Qué es y para qué usar un splash screen?">
+
+<meta name="description" content="¿Qué es y para qué usar un splash screen?">
+
+
+
+<link rel="icon" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/touch-icon.png">
+<link rel="stylesheet" href="/assets/core.css">
+<link rel="canonical" href="/android/pantalla-de-inicio-en-android">
+<link rel="alternate" type="application/atom+xml" title="Archidemus | Cosas Informáticas" href="/feed.xml" />
+
+
+
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+	</head>
+
+	<body>
+
+		<aside class="logo">
+	
+	<a href="/">
+		<img src="http://www.gravatar.com/avatar/3911aa470bacd82d3ab1d9ccbe11d2b8.png?s=80" class="gravatar">
+	</a>
+	<span class="logo-prompt">Inicio</span>
+</aside>
+
+
+		<main>
+			<article>
+
+	<div class="center">
+		<h1>Cómo hacer una pantalla de inicio o splash screen.</h1>
+		<time
+  datetime="2017-07-22 00:00:00 -0400"
+
+  
+>
+
+  22 de
+
+  
+  julio
+    
+
+  del
+
+  2017
+</time>
+
+	</div>
+
+	<div class="divider"></div>
+
+	<h2 id="qué-es-y-para-qué-usar-un-splash-screen">¿Qué es y para qué usar un splash screen?</h2>
+
+<p>Esta es la vista que aparece muchas veces al inicio de muchas aplicaciones. Generalmente es una imagen estática y tiene como fin evitar que nuestra aplicación se muestre a medio cargar o solicitar permisos esenciales de la aplicación.</p>
+
+<h3 id="implementación">Implementación</h3>
+
+<p>Históricamente la implementación de esta pantalla de basó en un activity con un layout asociado a él. El problema de esta implementación es que le quitamos prioridad a la carga del programa. En vez de centrar los recursos en la inicialización de la aplicación, estos se centran primero en cargar nuestra splash screen haciendo lento el inicio, lo cual no queremos. Esto lo aprendí <a href="https://android.jlelse.eu/right-way-to-create-splash-screen-on-android-e7f1709ba154" target="_blank">aquí</a>.</p>
+
+<h2 id="código">Código</h2>
+
+<p>El código siguiente parte con SplashActivity, la cual tiene defnido como tema SplashTheme. Este tema usa un drawable, spash_background, que se encarga de definir en fondo de este. Cuando SplashActivity inicia, dibuja el fondo, ejecuta lo que necesitemos como peticion de permisos, inicia HomeActivity y finalmente se suicida.</p>
+
+<h3 id="manifest">Manifest</h3>
+
+<p>En primera instancia le diremos a nuestra aplicación que inicie con el SplashActivity y definimos HomeActivity.</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;manifest</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+    <span class="na">package=</span><span class="s">"com.domain.project"</span><span class="nt">&gt;</span> //Recordar cambiar esto
+    <span class="nt">&lt;application</span>
+        <span class="na">android:allowBackup=</span><span class="s">"true"</span>
+        <span class="na">android:icon=</span><span class="s">"@mipmap/ic_launcher"</span>
+        <span class="na">android:label=</span><span class="s">"@string/app_name"</span>
+        <span class="na">android:supportsRtl=</span><span class="s">"true"</span>
+        <span class="na">android:theme=</span><span class="s">"@style/AppTheme"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;activity</span>
+            <span class="na">android:name=</span><span class="s">".SplashActivity"</span>
+            <span class="na">android:theme=</span><span class="s">"@style/SplashTheme"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;intent-filter&gt;</span>
+                <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"android.intent.action.MAIN"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.LAUNCHER"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/intent-filter&gt;</span>
+        <span class="nt">&lt;/activity&gt;</span>
+        <span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">".HomeActivity"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/application&gt;</span>
+<span class="nt">&lt;/manifest&gt;</span>
+</code></pre>
+</div>
+<p>El detalle importante acá es el uso del SplashTheme para la SplashActivity. A continuación definiremos estos componentes. No olvidar cambiar el nombre del paquete.</p>
+
+<h3 id="activity">Activity</h3>
+
+<p>Creamos el SplashActivity. Es aquí donde ocurre la magia. En la fase onCreate() puedes hacer petición de permisos y otras cosas que desees previo a llamar el inicio de HomeActivity.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">androidjavapoint</span><span class="o">.</span><span class="na">splashscreen</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.content.Intent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.Bundle</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.support.v7.app.AppCompatActivity</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SplashActivity</span> <span class="kd">extends</span> <span class="n">AppCompatActivity</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="c1">//Aquí puedes poner una petición de permisos o lo que necesites previo a iniciar HomeActiviy.</span>
+        <span class="c1">//Luego iniciamos nuestra home activity</span>
+        <span class="n">startActivity</span><span class="o">(</span><span class="k">new</span> <span class="n">Intent</span><span class="o">(</span><span class="n">SplashActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="n">HomeActivity</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+        <span class="c1">//Teminamos la SplashActivity</span>
+        <span class="n">finish</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h3 id="theme">Theme</h3>
+
+<p>En este punto modifiqué un poco el tutorial original y cree un tema especifico para el SplashTheme, para no modificar el fondo de todas las vistas.</p>
+
+<p>Para esto creamos un archivo en la carpeta values con el nombre splash_theme.xml con lo siguiente.</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;resources&gt;</span>
+    <span class="nt">&lt;style</span> <span class="na">name=</span><span class="s">"SplashTheme"</span> <span class="na">parent=</span><span class="s">"@style/AppTheme"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">"android:windowBackground"</span><span class="nt">&gt;</span>@drawable/splash_background<span class="nt">&lt;/item&gt;</span>
+    <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre>
+</div>
+
+<p>El código anterior hereda del tema original usando <code class="highlighter-rouge">parent="@style/AppTheme</code>. Luego, define su fondo como un drawable. Un drawable es algo que se dibuja en la pantalla y lo usaremos para definir el fondo de nuestra aplicación.</p>
+
+<p>Para ello en la carpeta drawable creamos un archivo llamado splash_background.xml con el siguiente código.</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;layer-list</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;item</span> <span class="na">android:drawable=</span><span class="s">"@color/colorPrimary"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;item&gt;</span>
+        <span class="nt">&lt;bitmap</span>
+            <span class="na">android:gravity=</span><span class="s">"center"</span>
+            <span class="na">android:src=</span><span class="s">"@mipmap/ic_launcher"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/item&gt;</span>
+<span class="nt">&lt;/layer-list&gt;</span>
+</code></pre>
+</div>
+
+
+</article>
+
+<div class="page-navigation">
+	
+		<a class="home" href="/" title="Volver a inicio">Inicio</a>
+  
+</div>
+
+		</main>
+
+		<div class="footer">
+  <span class="block">&copy; 2017 Archidemus</span>
+</div>
+
+
+	</body>
+
+</html>
