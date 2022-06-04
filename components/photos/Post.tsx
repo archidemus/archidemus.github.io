@@ -24,8 +24,7 @@ const Post: React.FC<PostI> = ({ frontmatter, slug }) => {
 
 const Wrapper = styled.div`
   display: grid;
-  grid: min-content min-content min-content / 1fr;
-  gap: ${sizes.xxs};
+  grid: min-content 1fr / 1fr;
   cursor: pointer;
   :hover {
     h2 {
