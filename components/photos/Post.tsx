@@ -1,6 +1,5 @@
 import { sizes } from 'components/constants'
 import cardShadow from 'components/styles/cardShadow'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React from 'react'
 import styled from 'styled-components'
@@ -13,10 +12,7 @@ const Post: React.FC<PostI> = ({ frontmatter, slug }) => {
     <Wrapper onClick={() => router.push(`/photos/${slug}`)}>
       <Image
         src={frontmatter.mainImage.url}
-        width={frontmatter.mainImage.width}
-        height={frontmatter.mainImage.height}
         alt={frontmatter.title}
-        unoptimized
       />
       <Text>
         <Title>{frontmatter.title}</Title>
@@ -51,6 +47,10 @@ const Description = styled.h3`
 const Text = styled.div`
   background: white;
   padding: ${sizes.s};
+`
+
+const Image = styled.img`
+  width: 100%;
 `
 
 export default Post
