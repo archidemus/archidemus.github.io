@@ -20,9 +20,13 @@ const Main: React.FC<Props> = ({ children, className }) => (
 )
 
 const Wrapper = styled.div`
+  display: grid;
+  grid: min-content auto min-content / 1fr;
   width: 100%;
   margin: 0 auto;
   padding: 0 ${sizes.m};
+  min-height: 100vh;
+  overflow-y: auto;
 `
 
 const Content = styled.div`

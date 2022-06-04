@@ -69,7 +69,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
 
   * {
-    font-size: 18px;
+    font-size: 1em;
     color: ${({ color }) => color};
   }
 `
@@ -77,7 +77,7 @@ const Wrapper = styled.div`
 const Archidemus = styled.div`
   font-weight: 400;
   font-family: Bitter;
-  font-size: 20px;
+  font-size: 1.3em;
   cursor: pointer;
   text-underline-offset: ${sizes.xs};
   &:hover {

@@ -28,7 +28,7 @@ const Wrapper = styled(Main)`
 `
 
 const Posts = styled.div`
-  font-size: 12px;
+  font-size: 0.8em;
   display: grid;
   grid: 1fr / 1fr 1fr;
   gap: ${sizes.m};
