@@ -29,5 +29,6 @@ module.exports = {
     'no-use-before-define': 0,
     'react/jsx-props-no-spreading': 0,
     'react/require-default-props': 0,
+    '@next/next/no-img-element': 0,
   },
 }
