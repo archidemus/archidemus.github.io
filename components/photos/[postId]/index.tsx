@@ -51,7 +51,6 @@ const Markdown = styled.div`
     p {
       img {
         max-width: 100%;
-        max-height: 75vh;
       }
       margin: 0;
       width: fit-content;
