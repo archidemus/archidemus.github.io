@@ -4,19 +4,19 @@ import React from 'react'
 import styled from 'styled-components'
 
 const MENU_ITEMS: Array<{ key: string, link?: string, label: string }> = [
-  {
-    label: 'Photograpy',
-    key: 'photos',
-  },
-  {
-    label: 'YouTube',
-    key: 'youtube',
-    link: 'https://www.youtube.com/channel/UCNxTnrMSslZrl5m2_NT4Uew/featured',
-  },
-  {
-    label: 'About',
-    key: 'about',
-  },
+  // {
+  //  label: 'Photograpy',
+  //  key: 'photos',
+  // },
+  // {
+  //  label: 'YouTube',
+  //  key: 'youtube',
+  //  link: 'https://www.youtube.com/channel/UCNxTnrMSslZrl5m2_NT4Uew/featured',
+  // },
+  // {
+  //  label: 'About',
+  //  key: 'about',
+  // },
 ]
 
 type Props = { color?: 'black' | 'white' }
