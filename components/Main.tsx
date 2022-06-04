@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   grid: min-content auto min-content / 1fr;
   width: 100%;
   margin: 0 auto;
-  padding: 0 ${sizes.m};
+  padding: 0 1.2em;
   min-height: 100vh;
   overflow-y: auto;
 `
