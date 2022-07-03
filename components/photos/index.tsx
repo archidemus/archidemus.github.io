@@ -5,33 +5,21 @@ import styled from 'styled-components'
 import Post from './Post'
 import { Posts as IPosts } from './types'
 
-const Photos: React.FC<IPosts> = ({ posts }) => {
-  const firstPost = posts[0]
-  const restPosts = posts.slice(0, -1)
-
-  return (
-    <Wrapper>
-      {firstPost && <Post {...firstPost} />}
-      <Posts>
-        {restPosts.map((post) => (
-          <Post key={post.slug} {...post} />
-        ))}
-      </Posts>
-    </Wrapper>
-  )
-}
+const Photos: React.FC<IPosts> = ({ posts }) => (
+  <Wrapper>
+    {posts.map((post) => (
+      <Post key={post.slug} {...post} />
+    ))}
+  </Wrapper>
+)
 
 const Wrapper = styled(Main)`
   display: grid;
-  grid: auto auto / 1fr;
-  gap: ${sizes.m};
-`
-
-const Posts = styled.div`
-  font-size: 0.8em;
-  display: grid;
-  grid: 1fr / 1fr 1fr;
-  gap: ${sizes.m};
+  grid-gap: 10px;
+  grid: inhetir / repeat(auto-fill, calc((${sizes.contentWidth} - (${sizes.s} * 2)) / 3 ));
+  height: min-content;
+  justify-content: center;
+  grid-template-rows: masonry;
 `
 
 export default Photos

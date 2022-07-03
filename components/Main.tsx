@@ -21,7 +21,7 @@ const Main: React.FC<Props> = ({ children, className }) => (
 
 const Wrapper = styled.div`
   display: grid;
-  grid: min-content auto min-content / 1fr;
+  grid: min-content auto min-content / 100%;
   width: 100%;
   margin: 0 auto;
   padding: 0 1.2em;
