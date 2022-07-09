@@ -1,6 +1,6 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import Post from 'components/photos/[postId]'
+import Post from 'components/blog/[postId]'
 
 export const getStaticPaths = async () => {
   const files = fs.readdirSync('posts')

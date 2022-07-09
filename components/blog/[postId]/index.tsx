@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import { sizes } from 'components/constants'
 import Main from 'components/Main'
-import { FrontMatter } from 'components/photos/types'
+import { FrontMatter } from 'components/blog/types'
 import md from 'markdown-it'
 import React from 'react'
 import styled from 'styled-components'

@@ -1,14 +1,14 @@
-import Photos from 'components/photos'
+import Blog from 'components/blog'
 import sizeOf from 'image-size'
 import fs from 'fs'
 import matter from 'gray-matter'
 
 export async function getStaticProps() {
-  const files = fs.readdirSync('posts')
+  const postsFolder = fs.readdirSync('posts')
 
-  const posts = files.map((fileName) => {
-    const slug = fileName.replace('.md', '')
-    const readFile = fs.readFileSync(`posts/${fileName}`, 'utf-8')
+  const posts = postsFolder.map((post) => {
+    const slug = post.replace('.md', '')
+    const readFile = fs.readFileSync(`posts/${post}`, 'utf-8')
     const { data } = matter(readFile)
     const mainImageDimensions = sizeOf(`public/${data.mainImage}`)
     const mainImage = {
@@ -32,4 +32,4 @@ export async function getStaticProps() {
   }
 }
 
-export default Photos
+export default Blog

@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Post from './Post'
 import { Posts as IPosts } from './types'
 
-const Photos: React.FC<IPosts> = ({ posts }) => {
+const Blog: React.FC<IPosts> = ({ posts }) => {
   const firstPost = posts[0]
   const restPosts = posts.slice(0, -1)
 
@@ -34,4 +34,4 @@ const Posts = styled.div`
   gap: ${sizes.m};
 `
 
-export default Photos
+export default Blog
