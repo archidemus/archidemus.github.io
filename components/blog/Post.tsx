@@ -11,7 +11,7 @@ const Post: React.FC<PostI> = ({ frontmatter, slug }) => {
   return (
     <Wrapper onClick={() => router.push(`${router.asPath}/${slug}`)}>
       <Image
-        src={frontmatter.mainImage.url}
+        src={frontmatter.mainImage.path}
         alt={frontmatter.title}
       />
       <Text>

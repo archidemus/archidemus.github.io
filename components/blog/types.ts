@@ -1,14 +1,10 @@
+import { Photo } from 'components/photos/types'
+
 export interface FrontMatter {
   date?: string
   metaDesc?: string
   metaTitle?: string
-  mainImage: {
-    height: number
-    orientation: number
-    type: string
-    url: string
-    width: number
-  }
+  mainImage: Photo
   tags?: Array<string>
   title: string
 }
