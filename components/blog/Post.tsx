@@ -1,5 +1,7 @@
 import { sizes } from 'components/constants'
 import cardShadow from 'components/styles/cardShadow'
+import loader from 'helpers/loader'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React from 'react'
 import styled from 'styled-components'
@@ -7,12 +9,17 @@ import { Post as PostI } from './types'
 
 const Post: React.FC<PostI> = ({ frontmatter, slug }) => {
   const router = useRouter()
+  const { path, width, height } = frontmatter.mainImage
 
   return (
     <Wrapper onClick={() => router.push(`${router.asPath}/${slug}`)}>
       <Image
-        src={frontmatter.mainImage.path}
-        alt={frontmatter.title}
+        src={path}
+        width={width}
+        height={height}
+        loader={loader}
+        unoptimized
+        alt={path}
       />
       <Text>
         <Title>{frontmatter.title}</Title>
@@ -46,10 +53,6 @@ const Description = styled.h3`
 const Text = styled.div`
   background: white;
   padding: ${sizes.s};
-`
-
-const Image = styled.img`
-  width: 100%;
 `
 
 export default Post

@@ -12,7 +12,7 @@ export async function getStaticProps() {
     const { data } = matter(readFile)
     const mainImageDimensions = sizeOf(`public/${data.mainImage}`)
     const mainImage = {
-      url: data.mainImage,
+      path: data.mainImage,
       ...mainImageDimensions,
     }
     const frontmatter = {

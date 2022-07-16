@@ -1,9 +1,12 @@
-export interface Photo {
-  path: string,
+export interface Size {
   height: number
-  orientation: number
-  type: string
-  width: number
+  width: number,
+}
+export interface PhotoParams extends Size{
+  path: string,
+}
+export interface Photo extends PhotoParams {
+  small: PhotoParams,
 }
 
 export interface Photos {

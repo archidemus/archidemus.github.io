@@ -5,7 +5,7 @@ const Main = () => {
   const router = useRouter()
 
   useEffect(() => {
-    router.push('/blog')
+    router.push('/photos')
   }, [router])
 }
 
