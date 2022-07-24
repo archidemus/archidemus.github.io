@@ -79,7 +79,7 @@ const Archidemus = styled.div`
   font-family: Bitter;
   font-size: 1.3em;
   cursor: pointer;
-  text-underline-offset: ${sizes.xs};
+  text-underline-offset: ${sizes.xxs};
   &:hover {
     text-decoration: underline;
   }

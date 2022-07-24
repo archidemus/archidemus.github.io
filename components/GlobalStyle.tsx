@@ -9,13 +9,15 @@ export default createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    font-family: Fira Sans, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Droid Sans, Helvetica Neue, sans-serif;
     color: black;
     font-size: 12px;
     @media screen and (min-width: ${sizes.breakpoints['min-width']}) {
       font-size: inherit;
     }
     background: ${colors.background};
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
   }
 
   a {

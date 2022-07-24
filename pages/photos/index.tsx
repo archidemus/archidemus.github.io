@@ -58,9 +58,16 @@ export async function getStaticProps() {
           width: smallWidth,
           height: smallHeight,
         },
-        path: `/photos/big/${photo}`,
-        width: bigWidth,
-        height: bigHeight,
+        big: {
+          path: `/photos/big/${photo}`,
+          width: bigWidth,
+          height: bigHeight,
+        },
+        base: {
+          path: `/photos/${photo}`,
+          width: size.width,
+          height: size.height,
+        },
       })
     })
 
