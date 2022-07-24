@@ -8,7 +8,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ActionT, Photos as PhotosI } from './types'
 
-const gap = sizes.m
+const gap = sizes.s
 const Photos: React.FC<PhotosI> = ({ photos }) => {
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number>(-1)
   const isPhotoSelected = selectedPhotoIndex > -1

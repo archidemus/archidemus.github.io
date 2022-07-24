@@ -6,7 +6,7 @@ import sizeOf from 'image-size'
 import sharp from 'sharp'
 
 const contentWidth = Number(sizes.contentWidth.split('px')[0])
-const gap = sizes.m
+const gap = sizes.s
 const smallPhotoWidth = (contentWidth - (Number(gap.split('px')[0]) * 2)) / 3
 
 export async function getStaticProps() {

@@ -3,7 +3,7 @@ import matter from 'gray-matter'
 import Post from 'components/blog/[postId]'
 
 export const getStaticPaths = async () => {
-  const files = fs.readdirSync('posts')
+  const files = fs.readdirSync('public/posts')
   const paths = files.map((fileName) => ({
     params: {
       postId: fileName.replace('.md', ''),
@@ -22,7 +22,7 @@ interface StaticProps {
 }
 
 export const getStaticProps = async ({ params: { postId } }: StaticProps) => {
-  const fileName = fs.readFileSync(`posts/${postId}.md`, 'utf-8')
+  const fileName = fs.readFileSync(`public/posts/${postId}.md`, 'utf-8')
   const { data: frontmatter, content } = matter(fileName)
   return {
     props: {
