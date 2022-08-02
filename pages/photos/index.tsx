@@ -6,11 +6,12 @@ import sizeOf from 'image-size'
 import sharp from 'sharp'
 
 const contentWidth = Number(sizes.contentWidth.split('px')[0])
+const menuWidth = Number(sizes.menuWidth.split('px')[0])
 const gap = sizes.s
 const smallPhotoWidth = (contentWidth - (Number(gap.split('px')[0]) * 2)) / 3
 
 export async function getStaticProps() {
-  const photosFolder = fs.readdirSync('public/photos')
+  const photosFolder = fs.readdirSync('public/photos/base')
   const optimizedSize = ({ width, height }: Size, maxPhotoWidth: number) => {
     const ratioWidth = maxPhotoWidth / width
     const ratioHeight = maxPhotoWidth / height
@@ -23,7 +24,7 @@ export async function getStaticProps() {
   const photos = photosFolder
     .filter((photo) => photo.includes('.jp'))
     .map((photo) => {
-      const PUBLIC = `public/photos/${photo}`
+      const PUBLIC = `public/photos/base/${photo}`
       const PUBLIC_SMALL = `public/photos/small/${photo}`
       const PUBLIC_BIG = `public/photos/big/${photo}`
       const size = sizeOf(PUBLIC)
@@ -40,7 +41,7 @@ export async function getStaticProps() {
       } = optimizedSize({
         width: Number(size.width),
         height: Number(size.height),
-      }, contentWidth)
+      }, menuWidth)
       if (!fs.existsSync(PUBLIC_SMALL)) {
         sharp(PUBLIC)
           .resize(smallWidth, smallHeight)
@@ -62,11 +63,6 @@ export async function getStaticProps() {
           path: `/photos/big/${photo}`,
           width: bigWidth,
           height: bigHeight,
-        },
-        base: {
-          path: `/photos/${photo}`,
-          width: size.width,
-          height: size.height,
         },
       })
     })

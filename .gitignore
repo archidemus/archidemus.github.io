@@ -36,3 +36,4 @@ yarn-error.log*
 
 # Others
 .vscode
+public/photos/base

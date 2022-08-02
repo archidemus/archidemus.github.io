@@ -13,7 +13,7 @@ interface ActionsI {
   [key: string]: ActionT
 }
 
-const Fullscreen: React.FC<FullscreenI> = ({ base, doAction }) => {
+const Fullscreen: React.FC<FullscreenI> = ({ big, doAction }) => {
   const onKeyDown = ({ key }: KeyboardEvent) => {
     const actions: ActionsI = {
       Escape: 'close',
@@ -41,7 +41,7 @@ const Fullscreen: React.FC<FullscreenI> = ({ base, doAction }) => {
       <Arrow onClick={() => doAction('prev')}>
         <FontAwesomeIcon icon={faAngleLeft} />
       </Arrow>
-      <Image src={base.path} alt={base.path} />
+      <Image src={big.path} alt={big.path} />
       <Arrow onClick={() => doAction('next')}>
         <FontAwesomeIcon icon={faAngleRight} />
       </Arrow>
@@ -68,6 +68,7 @@ const Image = styled.img`
   max-height: 100%;
   width: auto;
   height: auto;
+  padding: ${sizes.m} 0;
 `
 
 const Arrow = styled.button`

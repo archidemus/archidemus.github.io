@@ -31,7 +31,7 @@ const Photos: React.FC<PhotosI> = ({ photos }) => {
         <title>Photos | Archidemus</title>
         <meta name="description" content="All my photographs." />
       </Head>
-      {photos.map((photo, i) => {
+      {photos.reverse().map((photo, i) => {
         const { small } = photo
         return (
           <Photo
