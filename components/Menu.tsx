@@ -4,10 +4,14 @@ import React from 'react'
 import styled from 'styled-components'
 
 const MENU_ITEMS: Array<{ key: string, link?: string, label: string }> = [
-  // {
-  //  label: 'Photograpy',
-  //  key: 'photos',
-  // },
+  {
+    label: 'Photograpy',
+    key: 'photos',
+  },
+  {
+    label: 'Tips',
+    key: 'tips',
+  },
   // {
   //  label: 'YouTube',
   //  key: 'youtube',
