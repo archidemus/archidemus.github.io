@@ -13,13 +13,9 @@ const gitAxios = axios.create({
     Accept: 'application/vnd.github+json',
   },
 })
-const getGistsList = (): Promise<GistList> => {
-  console.log('🚀 ~ file: api.tsx ~ line 20 ~ getGistsList ~ GIST_ENDPOINTS.listGists', GIST_ENDPOINTS.listGists)
-
-  return gitAxios
-    .get(GIST_ENDPOINTS.listGists)
-    .then((response) => response.data)
-}
+const getGistsList = (): Promise<GistList> => gitAxios
+  .get(GIST_ENDPOINTS.listGists)
+  .then((response) => response.data)
 
 const getGist = ({ queryKey }: { queryKey: Array<any> }): Promise<GistDetails> => {
   const [, gist] = queryKey
