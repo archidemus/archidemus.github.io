@@ -9,7 +9,7 @@ const MENU_ITEMS: Array<{ key: string, link?: string, label: string }> = [
     key: 'photos',
   },
   {
-    label: 'Tips',
+    label: 'Code tips',
     key: 'tips',
   },
   // {
@@ -67,9 +67,9 @@ const Wrapper = styled.div`
   flex-direction: row;
   width: 100%;
   align-items: center;
-  justify-content: space-between;
-  padding: ${sizes.m} 0;
-  max-width: ${sizes.menuWidth};
+  gap: ${sizes.m};
+  padding: ${sizes.m} ${sizes.s};
+  max-width: ${sizes.contentWidth};
   margin: 0 auto;
 
   * {
@@ -95,7 +95,6 @@ const Button = styled.button <{ active: boolean }>`
   font-weight: 300;
   padding: 0;
   margin: 0;
-  text-transform: capitalize;
   letter-spacing: 0;
   color: ${({ color }) => color};
   text-decoration: ${({ active }) => (active ? 'underline' : 'inherit')};

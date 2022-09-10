@@ -1,8 +1,11 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { sizes } from 'components/constants'
 import Menu from 'components/Menu'
 import React, { ReactNode } from 'react'
 import styled from 'styled-components'
 import Footer from './Footer'
+
+const queryClient = new QueryClient()
 
 type Props = {
   children: ReactNode
@@ -11,11 +14,13 @@ type Props = {
 
 const Main: React.FC<Props> = ({ children, className }) => (
   <Wrapper>
-    <Menu color="black" />
-    <Content className={className}>
-      {children}
-    </Content>
-    <Footer />
+    <QueryClientProvider client={queryClient}>
+      <Menu color="black" />
+      <Content className={className}>
+        {children}
+      </Content>
+      <Footer />
+    </QueryClientProvider>
   </Wrapper>
 )
 
