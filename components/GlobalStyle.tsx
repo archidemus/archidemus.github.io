@@ -1,10 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
-import fontImports from 'components/styles/fontImports'
 import { sizes, colors } from './constants'
 
 export default createGlobalStyle`
-  ${fontImports}
-
   html,
   body {
     padding: 0;
