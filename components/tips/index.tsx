@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import Main from 'components/Main'
+import Head from 'next/head'
 import React from 'react'
 import Gist from 'react-gist'
 import styled from 'styled-components'
@@ -7,6 +8,10 @@ import api from './api'
 
 const Tips: React.FC = () => (
   <Wrapper>
+    <Head>
+      <title>Code tips | Archidemus</title>
+      <meta name="description" content="Useful code I use every day" />
+    </Head>
     <GistsList />
   </Wrapper>
 )
