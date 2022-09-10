@@ -1,7 +1,6 @@
 import { sizes } from 'components/constants'
 import Main from 'components/Main'
 import Fullscreen from 'components/photos/Fullscreen'
-import loader from 'helpers/loader'
 import Head from 'next/head'
 import Image from 'next/image'
 import React, { useState } from 'react'
@@ -32,19 +31,17 @@ const Photos: React.FC<PhotosI> = ({ photos }) => {
         <meta name="description" content="All my photographs." />
       </Head>
       {photos.map((photo, i) => {
-        const { small } = photo
+        const { small, path } = photo
         return (
           <Photo
-            key={small.path}
+            key={path}
             onClick={() => setSelectedPhotoIndex(i)}
           >
             <Image
-              src={small.path}
+              src={path}
               width={small.width}
               height={small.height}
-              loader={loader}
-              unoptimized
-              alt={small.path}
+              alt={path}
             />
           </Photo>
         )

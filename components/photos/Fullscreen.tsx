@@ -1,6 +1,7 @@
 import { faAngleLeft, faAngleRight, faClose } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { sizes } from 'components/constants'
+import Image from 'next/image'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { ActionT, Photo as PhotoI } from './types'
@@ -13,7 +14,7 @@ interface ActionsI {
   [key: string]: ActionT
 }
 
-const Fullscreen: React.FC<FullscreenI> = ({ big, doAction }) => {
+const Fullscreen: React.FC<FullscreenI> = ({ path, big, doAction }) => {
   const onKeyDown = ({ key }: KeyboardEvent) => {
     const actions: ActionsI = {
       Escape: 'close',
@@ -41,7 +42,16 @@ const Fullscreen: React.FC<FullscreenI> = ({ big, doAction }) => {
       <Arrow onClick={() => doAction('prev')}>
         <FontAwesomeIcon icon={faAngleLeft} />
       </Arrow>
-      <Image src={big.path} alt={big.path} />
+      <ImageWrapper>
+        <Image
+          src={path}
+          alt={path}
+          width={big.width}
+          height={big.height}
+          layout="fill"
+          objectFit="contain"
+        />
+      </ImageWrapper>
       <Arrow onClick={() => doAction('next')}>
         <FontAwesomeIcon icon={faAngleRight} />
       </Arrow>
@@ -62,15 +72,6 @@ const Wrapper = styled.div`
   left: 0px;
 `
 
-const Image = styled.img`
-  object-fit: contain;
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  padding: ${sizes.m} 0;
-`
-
 const Arrow = styled.button`
   background-color: black;
   border: none;
@@ -88,6 +89,12 @@ const Close = styled.button`
   top: 0px;
   right: 0px;
   padding: ${sizes.s};
+`
+
+const ImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
 `
 
 export default Fullscreen

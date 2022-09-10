@@ -9,13 +9,17 @@ const GIST_ENDPOINTS = {
 const gitAxios = axios.create({
   baseURL: 'https://api.github.com/',
   headers: {
-    Authorization: 'Bearer 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',
+    Authorization: `Bearer ${process.env.NEXT_PUBLIC_GIST_TOKEN}`,
     Accept: 'application/vnd.github+json',
   },
 })
-const getGistsList = (): Promise<GistList> => gitAxios
-  .get(GIST_ENDPOINTS.listGists)
-  .then((response) => response.data)
+const getGistsList = (): Promise<GistList> => {
+  console.log('🚀 ~ file: api.tsx ~ line 20 ~ getGistsList ~ GIST_ENDPOINTS.listGists', GIST_ENDPOINTS.listGists)
+
+  return gitAxios
+    .get(GIST_ENDPOINTS.listGists)
+    .then((response) => response.data)
+}
 
 const getGist = ({ queryKey }: { queryKey: Array<any> }): Promise<GistDetails> => {
   const [, gist] = queryKey

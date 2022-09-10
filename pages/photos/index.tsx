@@ -3,7 +3,6 @@ import Photos from 'components/photos'
 import { Size } from 'components/photos/types'
 import fs from 'fs'
 import sizeOf from 'image-size'
-import sharp from 'sharp'
 
 const contentWidth = Number(sizes.contentWidth.split('px')[0])
 const menuWidth = Number(sizes.menuWidth.split('px')[0])
@@ -24,9 +23,8 @@ export async function getStaticProps() {
   const photos = photosFolder
     .filter((photo) => photo.includes('.jp'))
     .map((photo) => {
-      const PUBLIC = `public/photos/base/${photo}`
-      const PUBLIC_SMALL = `public/photos/small/${photo}`
-      const PUBLIC_BIG = `public/photos/big/${photo}`
+      const photoPath = `/photos/base/${photo}`
+      const PUBLIC = `public${photoPath}`
       const size = sizeOf(PUBLIC)
       const {
         width: smallWidth,
@@ -42,25 +40,14 @@ export async function getStaticProps() {
         width: Number(size.width),
         height: Number(size.height),
       }, menuWidth)
-      if (!fs.existsSync(PUBLIC_SMALL)) {
-        sharp(PUBLIC)
-          .resize(smallWidth, smallHeight)
-          .toFile(PUBLIC_SMALL)
-      }
-      if (!fs.existsSync(PUBLIC_BIG)) {
-        sharp(PUBLIC)
-          .resize(bigWidth, bigHeight)
-          .toFile(PUBLIC_BIG)
-      }
 
       return ({
+        path: photoPath,
         small: {
-          path: `/photos/small/${photo}`,
           width: smallWidth,
           height: smallHeight,
         },
         big: {
-          path: `/photos/big/${photo}`,
           width: bigWidth,
           height: bigHeight,
         },
