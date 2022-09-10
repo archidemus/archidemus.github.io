@@ -3,6 +3,7 @@ import Photos from 'components/photos'
 import { Size } from 'components/photos/types'
 import fs from 'fs'
 import sizeOf from 'image-size'
+import path from 'path'
 
 const contentWidth = Number(sizes.contentWidth.split('px')[0])
 const menuWidth = Number(sizes.menuWidth.split('px')[0])
@@ -10,7 +11,8 @@ const gap = sizes.s
 const smallPhotoWidth = (contentWidth - (Number(gap.split('px')[0]) * 2)) / 3
 
 export async function getStaticProps() {
-  const photosFolder = fs.readdirSync('public/photos/base')
+  const photosPath = path.join(process.cwd(), 'public', 'photos', 'base')
+  const photosFolder = fs.readdirSync(photosPath)
   const optimizedSize = ({ width, height }: Size, maxPhotoWidth: number) => {
     const ratioWidth = maxPhotoWidth / width
     const ratioHeight = maxPhotoWidth / height
@@ -24,7 +26,7 @@ export async function getStaticProps() {
     .filter((photo) => photo.includes('.jp'))
     .map((photo) => {
       const photoPath = `/photos/base/${photo}`
-      const PUBLIC = `public${photoPath}`
+      const PUBLIC = path.join(photosPath, photo)
       const size = sizeOf(PUBLIC)
       const {
         width: smallWidth,
