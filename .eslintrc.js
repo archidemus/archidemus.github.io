@@ -31,6 +31,7 @@ module.exports = {
     'react/require-default-props': 0,
     '@next/next/no-img-element': 0,
     'no-unused-vars': 'off',
+    'react/prop-types': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
   },
 }
