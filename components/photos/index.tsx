@@ -1,8 +1,8 @@
 import { sizes } from 'components/constants'
 import Main from 'components/Main'
 import Fullscreen from 'components/photos/Fullscreen'
+import PhotoSpinner from 'components/static/PhotoSpinner'
 import Head from 'next/head'
-import Image from 'next/image'
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { ActionT, Photos as PhotosI } from './types'
@@ -33,17 +33,15 @@ const Photos: React.FC<PhotosI> = ({ photos }) => {
       {photos.map((photo, i) => {
         const { small, path } = photo
         return (
-          <Photo
+          <PhotoSpinner
             key={path}
-            onClick={() => setSelectedPhotoIndex(i)}
-          >
-            <Image
-              src={path}
-              width={small.width}
-              height={small.height}
-              alt={path}
-            />
-          </Photo>
+            src={path}
+            width={small.width}
+            height={small.height}
+            alt={path}
+            onSelected={() => setSelectedPhotoIndex(i)}
+          />
+
         )
       })}
       {isPhotoSelected && <Fullscreen doAction={doAction} {...photos[selectedPhotoIndex]} />}
@@ -52,20 +50,13 @@ const Photos: React.FC<PhotosI> = ({ photos }) => {
 }
 
 const Wrapper = styled(Main)`
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: ${gap};
-  grid: 1fr / auto auto auto;
   height: min-content;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-`
-
-const Photo = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
 `
 
 export default Photos

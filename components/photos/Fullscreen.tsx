@@ -1,7 +1,7 @@
 import { faAngleLeft, faAngleRight, faClose } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { sizes } from 'components/constants'
-import Image from 'next/image'
+import PhotoSpinner from 'components/static/PhotoSpinner'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { ActionT, Photo as PhotoI } from './types'
@@ -14,7 +14,7 @@ interface ActionsI {
   [key: string]: ActionT
 }
 
-const Fullscreen: React.FC<FullscreenI> = ({ path, big, doAction }) => {
+const Fullscreen: React.FC<FullscreenI> = ({ path, doAction }) => {
   const onKeyDown = ({ key }: KeyboardEvent) => {
     const actions: ActionsI = {
       Escape: 'close',
@@ -43,13 +43,12 @@ const Fullscreen: React.FC<FullscreenI> = ({ path, big, doAction }) => {
         <FontAwesomeIcon icon={faAngleLeft} />
       </Arrow>
       <ImageWrapper>
-        <Image
+        <PhotoSpinner
           src={path}
           alt={path}
-          width={big.width}
-          height={big.height}
-          layout="fill"
-          objectFit="contain"
+          fill
+          style={{ objectFit: 'contain' }}
+          quality={100}
         />
       </ImageWrapper>
       <Arrow onClick={() => doAction('next')}>
