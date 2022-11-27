@@ -3,38 +3,39 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import styled from 'styled-components'
 
-const MENU_ITEMS: Array<{ key: string, link?: string, label: string }> = [
+interface IMenuItems {
+  label: string
+  key: string
+  link?: string
+}
+
+const MENU_ITEMS: IMenuItems[] = [
   {
     label: 'Photograpy',
-    key: 'photos',
+    key: '',
   },
   {
     label: 'Code tips',
     key: 'tips',
   },
-  // {
-  //  label: 'YouTube',
-  //  key: 'youtube',
-  //  link: 'https://www.youtube.com/channel/UCNxTnrMSslZrl5m2_NT4Uew/featured',
-  // },
-  // {
-  //  label: 'About',
-  //  key: 'about',
-  // },
 ]
 
-type Props = { color?: 'black' | 'white' }
+interface IMenu {
+  color?: 'black' | 'white'
+}
 
-const Menu: React.FC<Props> = ({ color = 'black' }) => {
-  const router = useRouter()
+const Menu = ({ color = 'black' }: IMenu) => {
+  const {
+    pathname, push,
+  } = useRouter()
 
-  const isActive = (key: string): boolean => router.pathname.includes(key)
+  const isActive = (key: string): boolean => pathname === (`/${key}`)
 
   const goToSection = ({ key, link }: { key: string, link?: string }) => {
     if (link) {
       window.location.replace(link)
     } else {
-      router.push(`/${key}`)
+      push(`/${key}`)
     }
   }
 
@@ -42,7 +43,7 @@ const Menu: React.FC<Props> = ({ color = 'black' }) => {
     <Wrapper color={color}>
       <Archidemus
         color={color}
-        onClick={() => router.push('/')}
+        onClick={() => push('/')}
       >
         Archidemus.
       </Archidemus>
