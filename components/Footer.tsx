@@ -2,7 +2,7 @@ import { sizes } from 'components/constants'
 import React from 'react'
 import styled from 'styled-components'
 
-const Footer: React.FC = () => (
+const Footer = () => (
   <Wrapper>
     Archidemus. All rights reserved.
   </Wrapper>

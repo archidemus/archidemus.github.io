@@ -6,7 +6,7 @@ import Gist from 'react-gist'
 import styled from 'styled-components'
 import api from './api'
 
-const Tips: React.FC = () => (
+const Tips = () => (
   <Wrapper>
     <Head>
       <title>Code tips | Archidemus</title>
@@ -16,7 +16,7 @@ const Tips: React.FC = () => (
   </Wrapper>
 )
 
-const GistsList: React.FC = () => {
+const GistsList = () => {
   const { data: gistList } = useQuery(['getGistsList'], api.getGistsList)
   return (
     <GistsListWrapper>
@@ -29,7 +29,7 @@ const GistsList: React.FC = () => {
   )
 }
 
-const CustomGist: React.FC<{ id: string }> = ({ id }) => <Gist id={id} />
+const CustomGist = ({ id }: { id: string }) => <Gist id={id} />
 
 const Wrapper = styled(Main)`
   display: flex;

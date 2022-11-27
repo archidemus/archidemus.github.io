@@ -6,12 +6,12 @@ import md from 'markdown-it'
 import React from 'react'
 import styled from 'styled-components'
 
-interface Props {
+interface IPost {
   frontmatter: FrontMatter,
   content: string
 }
 
-const Post: React.FC<Props> = ({ frontmatter, content }) => (
+const Post = ({ frontmatter, content }: IPost) => (
   <Wrapper>
     <Top>
       <Title>{frontmatter.title}</Title>

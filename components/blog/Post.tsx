@@ -5,9 +5,9 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React from 'react'
 import styled from 'styled-components'
-import { Post as PostI } from './types'
+import { Post as IPost } from './types'
 
-const Post: React.FC<PostI> = ({ frontmatter, slug }) => {
+const Post = ({ frontmatter, slug }: IPost) => {
   const router = useRouter()
   const { path, width, height } = frontmatter.mainImage
 

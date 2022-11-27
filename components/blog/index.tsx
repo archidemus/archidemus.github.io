@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Post from './Post'
 import { Posts as IPosts } from './types'
 
-const Blog: React.FC<IPosts> = ({ posts }) => {
+const Blog = ({ posts }: IPosts) => {
   const firstPost = posts[0]
   const restPosts = posts.slice(0, -1)
 

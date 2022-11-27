@@ -6,11 +6,11 @@ interface IPhotoSpinner extends ImageProps {
   onSelected?: () => void
 }
 
-const PhotoSpinner: React.FC<IPhotoSpinner> = ({
+const PhotoSpinner = ({
   onSelected,
   className,
   ...props
-}) => {
+}: IPhotoSpinner) => {
   const [isLoaded, setIsLoaded] = useState(false)
   return (
     <Photo

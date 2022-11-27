@@ -7,12 +7,12 @@ import Footer from './Footer'
 
 const queryClient = new QueryClient()
 
-type Props = {
+type IMain = {
   children: ReactNode
   className?: string | undefined
 }
 
-const Main: React.FC<Props> = ({ children, className }) => (
+const Main = ({ children, className }: IMain) => (
   <Wrapper>
     <QueryClientProvider client={queryClient}>
       <Menu color="black" />

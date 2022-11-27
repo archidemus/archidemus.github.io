@@ -5,10 +5,10 @@ import PhotoSpinner from 'components/static/PhotoSpinner'
 import Head from 'next/head'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { ActionT, Photos as PhotosI } from './types'
+import { ActionT, Photos as IPhotos } from './types'
 
 const gap = sizes.s
-const Photos: React.FC<PhotosI> = ({ photos }) => {
+const Photos = ({ photos }: IPhotos) => {
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number>(-1)
   const isPhotoSelected = selectedPhotoIndex > -1
     && selectedPhotoIndex < photos.length

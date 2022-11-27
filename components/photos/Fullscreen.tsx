@@ -6,17 +6,17 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { ActionT, Photo as PhotoI } from './types'
 
-interface FullscreenI extends PhotoI {
+interface IFullscreen extends PhotoI {
   doAction: (action: ActionT) => void
 }
 
-interface ActionsI {
+interface IActions {
   [key: string]: ActionT
 }
 
-const Fullscreen: React.FC<FullscreenI> = ({ path, doAction }) => {
+const Fullscreen = ({ path, doAction }: IFullscreen) => {
   const onKeyDown = ({ key }: KeyboardEvent) => {
-    const actions: ActionsI = {
+    const actions: IActions = {
       Escape: 'close',
       ArrowRight: 'next',
       ArrowLeft: 'prev',
