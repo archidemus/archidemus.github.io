@@ -41,7 +41,6 @@ const Photos = ({ photos }: IPhotos) => {
             alt={path}
             onSelected={() => setSelectedPhotoIndex(i)}
           />
-
         )
       })}
       {isPhotoSelected && <Fullscreen doAction={doAction} {...photos[selectedPhotoIndex]} />}
