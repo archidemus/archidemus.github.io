@@ -8,7 +8,7 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: "https://archidemus.github.io",
-  base: "archidemus",
+  base: "archidemus.me",
   integrations: [
     react(),
     tailwind({
