@@ -16,7 +16,9 @@ export default function Component() {
         <CardHeader className="text-center">
           <Avatar className="w-32 h-32 mx-auto mb-4">
             <AvatarImage src={me.src} alt="Foto de perfil" />
-            <AvatarFallback>JP</AvatarFallback>
+            <AvatarFallback>
+              <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+            </AvatarFallback>
           </Avatar>
           <CardTitle className="text-2xl font-bold">Archidemus</CardTitle>
           <CardDescription className="text-lg">
