@@ -1,3 +1,4 @@
+import me from "@/assets/me.jpg";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
@@ -6,8 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Facebook, Github, Instagram, Linkedin, Youtube } from "lucide-react";
-import me from "@/assets/me.jpg";
+import { Github, Instagram, Youtube } from "lucide-react";
 
 export default function Component() {
   return (
@@ -20,50 +20,34 @@ export default function Component() {
           </Avatar>
           <CardTitle className="text-2xl font-bold">Archidemus</CardTitle>
           <CardDescription className="text-lg">
-            Ignacio Norambuena
+            Me llamo Ignacio.
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-center mb-6">
-            Disfruto de paseos largos, deportes diversos y de comer rico con
-            amigos. Me gusta la historia, la economía y la política. Ingeniero
-            Civil Informático con foco en UI/UX.
-          </p>
-          <div className="flex justify-center space-x-4">
+          <p className="text-center">Ingeniería de software - UI/UX 👨‍💻</p>
+          <p className="text-center">Viajar lento 🏍️🚍</p>
+          <p className="text-center">Deportes en general 🎿🏋️🏄</p>
+          <div className="flex justify-center space-x-4 mt-8">
             <a
-              href="#"
+              href="https://www.youtube.com/@don_archidemus"
               className="text-red-600 hover:text-red-800 transition-colors"
             >
               <Youtube className="w-6 h-6" />
               <span className="sr-only">YouTube</span>
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/archidemus_/"
               className="text-pink-600 hover:text-pink-800 transition-colors"
             >
               <Instagram className="w-6 h-6" />
               <span className="sr-only">Instagram</span>
             </a>
             <a
-              href="#"
-              className="text-blue-600 hover:text-blue-800 transition-colors"
-            >
-              <Facebook className="w-6 h-6" />
-              <span className="sr-only">Facebook</span>
-            </a>
-            <a
-              href="#"
+              href="https://www.github.com/archidemus"
               className="text-blue-700 hover:text-blue-900 transition-colors"
             >
               <Github className="w-6 h-6" />
               <span className="sr-only">GitHub</span>
-            </a>
-            <a
-              href="#"
-              className="text-blue-700 hover:text-blue-900 transition-colors"
-            >
-              <Linkedin className="w-6 h-6" />
-              <span className="sr-only">LinkedIn</span>
             </a>
           </div>
         </CardContent>
