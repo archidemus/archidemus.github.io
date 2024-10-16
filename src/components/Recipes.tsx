@@ -108,10 +108,11 @@ ${transcriptText}
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold text-center mb-6">
-        YouTube Recipe Transcript Extractor
+        Extractor de recetas de Youtube
       </h1>
       <p className="text-center text-gray-600">
-        Obtiene el prompt para que una IA te extraiga la receta
+        A partir de un video de YouTube, obtén un resumen de la receta en
+        markdown. Yo lo uso para guardarla en notion.
       </p>
       <Local inputName="openaiApiKey" label="OpenAI Api Key" />
       <form onSubmit={handleSubmit}>
