@@ -26,8 +26,7 @@ export default async function sendPromptToChatGPT({
         },
       ],
     });
-    console.log(response.choices[0].message);
-    return response.choices[0].message;
+    return response.choices[0].message.content;
   } catch (error) {
     console.error("Error sending prompt to GPT: ", error);
   }

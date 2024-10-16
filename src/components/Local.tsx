@@ -1,14 +1,10 @@
 import { Button } from "@/components/ui/button";
-import {
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 
-const Local = ({ inputName }: { inputName: string }) => {
+const Local = ({ inputName, label }: { inputName: string; label?: string }) => {
+  console.log("🚀 ~ Local ~ inputName:", inputName);
   const [inputValue, setInputValue] = useState<string>("");
 
   useEffect(() => {
@@ -23,22 +19,13 @@ const Local = ({ inputName }: { inputName: string }) => {
   };
 
   return (
-    <div className="p-4">
-      <CardHeader>
-        <CardTitle>Save Input to Local Storage</CardTitle>
-        <CardDescription>
-          Enter a value and save it to local storage.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Input
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Enter something..."
-          className="mb-4"
-        />
-        <Button onClick={handleSave}>Save</Button>
-      </CardContent>
+    <div>
+      <Label htmlFor="picture">{label || inputName}</Label>
+      <Input
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
+      <Button onClick={handleSave}>Guardar</Button>
     </div>
   );
 };
