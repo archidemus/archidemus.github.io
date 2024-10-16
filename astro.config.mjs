@@ -9,9 +9,12 @@ import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://archidemus.github.io",
-  base: "archidemus.me",
-  integrations: [react(), tailwind({
-    applyBaseStyles: false,
-  }), partytown()],
+  site: "https://archidemus.me",
+  integrations: [
+    react(),
+    tailwind({
+      applyBaseStyles: false,
+    }),
+    partytown(),
+  ],
 });
