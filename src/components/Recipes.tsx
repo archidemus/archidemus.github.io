@@ -1,16 +1,18 @@
 // src/App.tsx
-import React, { useState } from "react";
-import { YoutubeTranscript } from "youtube-transcript";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Card,
-  CardHeader,
   CardContent,
-  CardTitle,
   CardDescription,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import sendPromptToChatGPT from "@/lib/sendPromptToChatGPT";
 import { CheckCircleIcon, ClipboardCopyIcon } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { YoutubeTranscript } from "youtube-transcript";
+import Local from "./Local";
 
 interface TranscriptItem {
   text: string;
@@ -23,6 +25,14 @@ const App: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [title, setTitle] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState<boolean>(false);
+  const [openaiApiKey, setOpenaiApiKey] = useState<string>();
+
+  useEffect(() => {
+    const savedValue = localStorage.getItem("openaiApiKey");
+    if (savedValue) {
+      setOpenaiApiKey(savedValue);
+    }
+  });
 
   const getVideoId = (url: string): string | null => {
     const regExp =
@@ -88,6 +98,11 @@ ${transcriptText}
         navigator.clipboard.writeText(formatText);
         setIsCopied(true);
         setTimeout(() => setIsCopied(false), 3000);
+        const recipe = await sendPromptToChatGPT({
+          prompt: formatText,
+          apiKey: openaiApiKey,
+        });
+        console.log("🚀 ~ handleSubmit ~ recipe:", recipe);
       } else {
         setError("No se pudo obtener el transcript del video.");
       }
@@ -108,7 +123,7 @@ ${transcriptText}
       <p className="text-center text-gray-600">
         Obtiene el prompt para que una IA te extraiga la receta
       </p>
-
+      <Local inputName="openaiApiKey" />
       <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
         <Input
           type="text"
