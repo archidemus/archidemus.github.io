@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { YoutubeTranscript } from "youtube-transcript";
 import Local from "./Local";
 import { Results } from "./Results";
+import { Label } from "@/components/ui/label";
 
 interface TranscriptItem {
   text: string;
@@ -46,6 +47,8 @@ const App: React.FC = () => {
     } catch (error) {
       console.error("Error fetching transcript: ", error);
       return null;
+    } finally {
+      setIsLoadingTranscript(false);
     }
   };
 
@@ -65,6 +68,7 @@ const App: React.FC = () => {
     try {
       const transcriptText = await fetchTranscript(videoId);
       if (transcriptText) {
+        setIsLoadingRecipe(true);
         setTranscript(transcriptText);
         const formatText = `Quiero un resumen de la receta con sus ingredientes. El link es ${youtubeUrl}. El formato de salida quiero que sea:
 
@@ -102,11 +106,12 @@ ${transcriptText}
       console.error(error);
     } finally {
       setIsLoadingTranscript(false);
+      setIsLoadingRecipe(false);
     }
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container min-[]:h-screen p-16 flex flex-col gap-6">
       <h1 className="text-3xl font-bold text-center mb-6">
         Extractor de recetas de Youtube
       </h1>
@@ -114,18 +119,21 @@ ${transcriptText}
         A partir de un video de YouTube, obtén un resumen de la receta en
         markdown. Yo lo uso para guardarla en notion.
       </p>
-      <Local inputName="openaiApiKey" label="OpenAI Api Key" />
-      <form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          placeholder="Introduce el enlace del video de YouTube"
-          value={youtubeUrl}
-          onChange={(e) => setYoutubeUrl(e.target.value)}
-        />
-        <Button type="submit" disabled={isLoadingTranscript}>
-          {isLoadingTranscript ? "Cargando..." : "Obtener Transcript"}
-        </Button>
-      </form>
+      <div className="grid gap-4 grid-cols-2">
+        <Local inputName="openaiApiKey" label="OpenAI Api Key" />
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+          <Label htmlFor="picture">Link del video</Label>
+          <Input
+            type="text"
+            placeholder="Introduce el enlace del video de YouTube"
+            value={youtubeUrl}
+            onChange={(e) => setYoutubeUrl(e.target.value)}
+          />
+          <Button type="submit" disabled={isLoadingTranscript}>
+            {isLoadingTranscript ? "Cargando..." : "Obtener Transcript"}
+          </Button>
+        </form>
+      </div>
       <Results
         transcript={transcript}
         recipe={recipe}

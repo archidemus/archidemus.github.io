@@ -1,11 +1,11 @@
 ---
-import Recetas from '@/components/Recipes'
+import Receta from '@/components/Recetas/Recetas'
 import Layout from '../layouts/Layout.astro';
 import '@/styles/globals.css'
 ---
 
 <Layout title="Archidemus | Recetas" >
-    <Recetas client:load/>
+    <Receta client:load/>
 </Layout>
 
 <style>

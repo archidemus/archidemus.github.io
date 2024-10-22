@@ -4,7 +4,6 @@ import { Label } from "@/components/ui/label";
 import { useEffect, useState } from "react";
 
 const Local = ({ inputName, label }: { inputName: string; label?: string }) => {
-  console.log("🚀 ~ Local ~ inputName:", inputName);
   const [inputValue, setInputValue] = useState<string>("");
 
   useEffect(() => {
@@ -19,7 +18,7 @@ const Local = ({ inputName, label }: { inputName: string; label?: string }) => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <Label htmlFor="picture">{label || inputName}</Label>
       <Input
         value={inputValue}
