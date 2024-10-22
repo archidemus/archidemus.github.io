@@ -20,9 +20,9 @@ export default function Component() {
               <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
             </AvatarFallback>
           </Avatar>
-          <CardTitle className="text-2xl font-bold">Archidemus</CardTitle>
+          <CardTitle className="text-2xl font-bold">Me llamo Ignacio</CardTitle>
           <CardDescription className="text-lg">
-            Me llamo Ignacio.
+            pero me dicen nano
           </CardDescription>
         </CardHeader>
         <CardContent>

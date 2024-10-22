@@ -7,8 +7,8 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { ClipboardCopyIcon } from "lucide-react";
-import Spinner from "../Spinner";
 import Markdown from "react-markdown";
+import Spinner from "../Spinner";
 
 export function Results({
   transcript,

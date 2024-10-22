@@ -1,12 +1,12 @@
 // src/App.tsx
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import sendPromptToChatGPT from "@/lib/sendPromptToChatGPT";
 import React, { useEffect, useState } from "react";
 import { YoutubeTranscript } from "youtube-transcript";
 import Local from "./Local";
 import { Results } from "./Results";
-import { Label } from "@/components/ui/label";
 
 interface TranscriptItem {
   text: string;
