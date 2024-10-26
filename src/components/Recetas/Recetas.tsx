@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { YoutubeTranscript } from "youtube-transcript";
 import Local from "./Local";
 import { Results } from "./Results";
+import Content from "../Content";
 
 interface TranscriptItem {
   text: string;
@@ -111,9 +112,9 @@ ${transcriptText}
   };
 
   return (
-    <div className="container min-[]:h-screen p-16 flex flex-col gap-6">
-      <h1 className="text-3xl font-bold text-center mb-6">
-        Extractor de recetas de Youtube
+    <Content className="py-8 px-6 gap-8 flex flex-col">
+      <h1 className="text-3xl font-bold text-center">
+        Extractor de recetas de YouTube
       </h1>
       <p className="text-center text-gray-600">
         A partir de un video de YouTube, obtén un resumen de la receta en
@@ -125,12 +126,11 @@ ${transcriptText}
           <Label htmlFor="picture">Link del video</Label>
           <Input
             type="text"
-            placeholder="Introduce el enlace del video de YouTube"
             value={youtubeUrl}
             onChange={(e) => setYoutubeUrl(e.target.value)}
           />
           <Button type="submit" disabled={isLoadingTranscript}>
-            {isLoadingTranscript ? "Cargando..." : "Obtener Transcript"}
+            {isLoadingTranscript ? "Cargando..." : "Obtener transcripción"}
           </Button>
         </form>
       </div>
@@ -142,7 +142,7 @@ ${transcriptText}
         errorRecipe={errorRecipe}
         errorTranscript={errorTranscript}
       />
-    </div>
+    </Content>
   );
 };
 

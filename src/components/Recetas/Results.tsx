@@ -39,7 +39,7 @@ export function Results({
       <AccordionItem value="transcript">
         <AccordionTrigger className="flex justify-start">
           <span className="flex gap-2 mr-2">
-            Transcript {isLoadingTranscript && <Spinner />}
+            Transcripción {isLoadingTranscript && <Spinner />}
           </span>
         </AccordionTrigger>
         <AccordionContent className="flex flex-col">
