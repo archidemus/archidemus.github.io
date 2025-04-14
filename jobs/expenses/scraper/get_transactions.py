@@ -2,9 +2,7 @@
 # Utiliza XPaths para rellenar formularios y dotenv para variables de entorno
 
 import os
-from datetime import datetime
 import time
-import sys
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -14,7 +12,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
 from dotenv import load_dotenv
-from parse_unbilled import parse_unbilled
+from parse_unbilled_nacional import parse_unbilled_nacional
+from parse_unbilled_dolar import parse_unbilled_dolar
 from pathlib import Path
 
 # Cargar variables de entorno desde archivo .env
@@ -188,27 +187,20 @@ class SantanderScraper:
         """
 
         main_tc_unbilled_url = "https://mibanco.santander.cl/UI.Web.HB/Private_new/frame/#/private/Saldos_TC/main/bill"
-        main_tc_billed_url = "https://mibanco.santander.cl/UI.Web.HB/Private_new/frame/#/private/Saldos_TC/main/billed"
-
-        # Obtener fecha y timestamp actual
-        now = datetime.now()
-        date_str = now.strftime("%Y%m%d")
-        timestamp = now.strftime("%H%M%S")
 
         # Obtener HTML de movimientos sin facturar
         self.driver.get(main_tc_unbilled_url)
         time.sleep(6)  # Esperar a que cargue la página
         unbilled_html = self.driver.page_source
-        parse_unbilled(unbilled_html, self.workdir)
+        parse_unbilled_nacional(unbilled_html, self.workdir)
 
-        # Obtener HTML de movimientos facturados
-        # self.driver.get(main_tc_billed_url)
-        # time.sleep(6)  # Esperar a que cargue la página
-        # billed_html = self.driver.page_source
-        # billed_filename = f"tc_billed_{date_str}_{timestamp}.txt"
-        # with open(billed_filename, "w", encoding="utf-8") as f:
-        #     f.write(billed_html)
-        # print(f"HTML de movimientos facturados guardado en {billed_filename}")
+        # Obtener en dólares
+        dolares_button_xpath = '//*[@id="mat-button-toggle-2-button"]'
+        scraper.wait_for_element(dolares_button_xpath)
+        self.click_element(dolares_button_xpath)
+        time.sleep(6)  # Esperar a que cargue la página
+        unbilled_dollar_html = self.driver.page_source
+        parse_unbilled_dolar(unbilled_dollar_html, self.workdir)
 
     def close(self):
         """Cierra el navegador"""

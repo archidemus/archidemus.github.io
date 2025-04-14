@@ -5,7 +5,7 @@ from lxml import etree
 from pathlib import Path
 
 
-def parse_unbilled(unbilled_file: Path | str, workdir: Path):
+def parse_unbilled_dolar(unbilled_file: Path | str, workdir: Path):
     if isinstance(unbilled_file, str):
         contenido = unbilled_file
     else:
@@ -24,7 +24,7 @@ def parse_unbilled(unbilled_file: Path | str, workdir: Path):
     # Usar XPath para encontrar elementos
     transacciones = []
     dom = etree.HTML(contenido)
-    transacciones_xpath = '//*[@id="by-bill-container"]/div/div[2]/table/tbody/tr'
+    transacciones_xpath = '//*[@id="by-bill-container"]/div/div[3]/table/tbody/tr'
     elementos_transaccion = dom.xpath(transacciones_xpath)
 
     last_fecha = None
@@ -36,13 +36,27 @@ def parse_unbilled(unbilled_file: Path | str, workdir: Path):
                 else None
             )
             detalle = elemento[2].text.replace(" ", "")
-            cargo = elemento[3].text.replace(" ", "").replace("$", "").replace(".", "")
-            abono = elemento[4].text.replace(" ", "").replace("$", "").replace(".", "")
+            cargo = (
+                elemento[3]
+                .text.replace(" ", "")
+                .replace("USD", "")
+                .replace(".", "")
+                .replace("+", "")
+                .replace(",", ".")
+            )
+            abono = (
+                elemento[4]
+                .text.replace(" ", "")
+                .replace("USD", "")
+                .replace(".", "")
+                .replace("+", "")
+                .replace(",", ".")
+            )
 
             transaccion = {
                 "fecha": fecha or last_fecha,
                 "detalle": detalle,
-                "monto": int(cargo or abono),
+                "monto": float(cargo or abono),
             }
             transacciones.append(transaccion)
             last_fecha = transaccion["fecha"]
@@ -54,8 +68,12 @@ def parse_unbilled(unbilled_file: Path | str, workdir: Path):
 
     # Guardar resultados
     if transacciones:
-        fecha = datetime.now().timestamp()
-        archivo_salida = workdir / "transacciones" / f"nacional_unbilled_{fecha}.json"
+        current_datetime = datetime.now()
+        date = current_datetime.strftime("%d%m%Y")
+        timestamp = current_datetime.timestamp()
+        archivo_salida = (
+            workdir / "transacciones" / f"dolar_unbilled_{date}_{timestamp}.json"
+        )
 
         os.makedirs(os.path.dirname(archivo_salida), exist_ok=True)
         with open(archivo_salida, "w", encoding="utf-8") as f:
@@ -65,4 +83,11 @@ def parse_unbilled(unbilled_file: Path | str, workdir: Path):
 
 
 if __name__ == "__main__":
-    parse_unbilled()
+    from dotenv import load_dotenv
+
+    load_dotenv()
+    DIRECTORY = Path(os.getenv("WORKDIR_PATH")) / "expenses"
+    parse_unbilled_dolar(
+        Path("/Users/nano/Desktop/archidemus.me/jobs/expenses/scraper/dolar.html"),
+        DIRECTORY,
+    )
