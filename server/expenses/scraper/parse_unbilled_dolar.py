@@ -4,8 +4,15 @@ from datetime import datetime
 from lxml import etree
 from pathlib import Path
 
+DEFAULT_CURRENCY_PESO = {"USD": 1000}
 
-def parse_unbilled_dolar(unbilled_file: Path | str, workdir: Path):
+
+def parse_unbilled_dolar(
+    unbilled_file: Path | str,
+    workdir: Path,
+    save: bool = False,
+    currency_peso: dict = DEFAULT_CURRENCY_PESO,
+):
     if isinstance(unbilled_file, str):
         contenido = unbilled_file
     else:
@@ -56,7 +63,7 @@ def parse_unbilled_dolar(unbilled_file: Path | str, workdir: Path):
             transaccion = {
                 "fecha": fecha or last_fecha,
                 "detalle": detalle,
-                "monto": float(cargo or abono),
+                "monto": float(cargo or abono) * currency_peso["USD"],
             }
             transacciones.append(transaccion)
             last_fecha = transaccion["fecha"]
@@ -68,18 +75,21 @@ def parse_unbilled_dolar(unbilled_file: Path | str, workdir: Path):
 
     # Guardar resultados
     if transacciones:
-        current_datetime = datetime.now()
-        date = current_datetime.strftime("%d%m%Y")
-        timestamp = current_datetime.timestamp()
-        archivo_salida = (
-            workdir / "transacciones" / f"dolar_unbilled_{date}_{timestamp}.json"
-        )
+        if save:
+            current_datetime = datetime.now()
+            date = current_datetime.strftime("%d%m%Y")
+            timestamp = current_datetime.timestamp()
+            archivo_salida = (
+                workdir / "transacciones" / f"dolar_unbilled_{date}_{timestamp}.json"
+            )
 
-        os.makedirs(os.path.dirname(archivo_salida), exist_ok=True)
-        with open(archivo_salida, "w", encoding="utf-8") as f:
-            f.write(json.dumps(transacciones))
+            os.makedirs(os.path.dirname(archivo_salida), exist_ok=True)
+            with open(archivo_salida, "w", encoding="utf-8") as f:
+                f.write(json.dumps(transacciones))
 
-        print(f"Transacciones guardadas en {archivo_salida}")
+            print(f"Transacciones guardadas en {archivo_salida}")
+        return transacciones
+    return None
 
 
 if __name__ == "__main__":
@@ -88,6 +98,6 @@ if __name__ == "__main__":
     load_dotenv()
     DIRECTORY = Path(os.getenv("WORKDIR_PATH")) / "expenses"
     parse_unbilled_dolar(
-        Path("/Users/nano/Desktop/archidemus.me/jobs/expenses/scraper/dolar.html"),
+        DIRECTORY / "scraper" / "dolar.html",
         DIRECTORY,
     )

@@ -12,8 +12,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
 from dotenv import load_dotenv
-from parse_unbilled_nacional import parse_unbilled_nacional
-from parse_unbilled_dolar import parse_unbilled_dolar
+from expenses.scraper.parse_unbilled_nacional import parse_unbilled_nacional
+from expenses.scraper.parse_unbilled_dolar import parse_unbilled_dolar
 from pathlib import Path
 
 # Cargar variables de entorno desde archivo .env
@@ -21,7 +21,7 @@ load_dotenv()
 
 
 class SantanderScraper:
-    def __init__(self, headless=True):
+    def __init__(self, headless=True, save: bool = False):
         """
         Inicializa el scraper con Selenium
 
@@ -56,6 +56,7 @@ class SantanderScraper:
 
         # Configurar el tiempo de espera predeterminado
         self.wait = WebDriverWait(self.driver, 10)
+        self.save = save
 
     def get_credentials(self):
         """
@@ -153,21 +154,21 @@ class SantanderScraper:
 
         # Esperar a que el botón esté presente y hacer clic
         login_button_xpath = '//*[@id="btnIngresar"]'
-        scraper.wait_for_element(login_button_xpath)
-        scraper.click_element(login_button_xpath)
+        self.wait_for_element(login_button_xpath)
+        self.click_element(login_button_xpath)
 
         # Esperar a que se cargue el panel de login en un iframe
         iframe_xpath = '//*[@id="login-frame"]'
-        scraper.wait_for_element(iframe_xpath)
-        scraper.driver.switch_to.frame(scraper.wait_for_element(iframe_xpath))
+        self.wait_for_element(iframe_xpath)
+        self.driver.switch_to.frame(self.wait_for_element(iframe_xpath))
         print("Cargado el iframe de login")
         # Esperar a que los campos de usuario y contraseña estén presentes
         username_xpath = '//*[@id="rut"]'
         password_xpath = '//*[@id="pass"]'
         submit_xpath = '//*[@type="submit"]'
-        scraper.wait_for_element(username_xpath)
-        scraper.wait_for_element(password_xpath)
-        scraper.wait_for_element(submit_xpath)
+        self.wait_for_element(username_xpath)
+        self.wait_for_element(password_xpath)
+        self.wait_for_element(submit_xpath)
 
         # Obtengo credenciales
         credentials = self.get_credentials()
@@ -192,15 +193,21 @@ class SantanderScraper:
         self.driver.get(main_tc_unbilled_url)
         time.sleep(6)  # Esperar a que cargue la página
         unbilled_html = self.driver.page_source
-        parse_unbilled_nacional(unbilled_html, self.workdir)
+        unbilled_nacional = parse_unbilled_nacional(
+            unbilled_html, self.workdir, save=self.save
+        )
 
         # Obtener en dólares
         dolares_button_xpath = '//*[@id="mat-button-toggle-2-button"]'
-        scraper.wait_for_element(dolares_button_xpath)
+        self.wait_for_element(dolares_button_xpath)
         self.click_element(dolares_button_xpath)
         time.sleep(6)  # Esperar a que cargue la página
         unbilled_dollar_html = self.driver.page_source
-        parse_unbilled_dolar(unbilled_dollar_html, self.workdir)
+        unbilled_dollar = parse_unbilled_dolar(
+            unbilled_dollar_html, self.workdir, save=self.save
+        )
+
+        return unbilled_nacional + unbilled_dollar
 
     def close(self):
         """Cierra el navegador"""
@@ -209,16 +216,16 @@ class SantanderScraper:
             print("Navegador cerrado")
 
 
-# Ejemplo de uso
-if __name__ == "__main__":
+def get_transactions(save: bool = False):
     # Crear el scraper
-    scraper = SantanderScraper(headless=False)
+    scraper = SantanderScraper(headless=False, save=save)
 
     try:
         # Navegar a la URL objetivo
         scraper.navigate_to()
         scraper.login()
-        scraper.get_TC()
+        transactions = scraper.get_TC()
+        return transactions
 
     except Exception as e:
         print(f"Error en la ejecución: {str(e)}")
@@ -226,3 +233,10 @@ if __name__ == "__main__":
     finally:
         # Cerrar el navegador
         scraper.close()
+
+    return transactions
+
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    get_transactions()

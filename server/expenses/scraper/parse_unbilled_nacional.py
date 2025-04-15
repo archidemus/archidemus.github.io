@@ -5,7 +5,11 @@ from lxml import etree
 from pathlib import Path
 
 
-def parse_unbilled_nacional(unbilled_file: Path | str, workdir: Path):
+def parse_unbilled_nacional(
+    unbilled_file: Path | str,
+    workdir: Path,
+    save: bool = False,
+):
     if isinstance(unbilled_file, str):
         contenido = unbilled_file
     else:
@@ -54,18 +58,21 @@ def parse_unbilled_nacional(unbilled_file: Path | str, workdir: Path):
 
     # Guardar resultados
     if transacciones:
-        current_datetime = datetime.now()
-        date = current_datetime.strftime("%d%m%Y")
-        timestamp = current_datetime.timestamp()
-        archivo_salida = (
-            workdir / "transacciones" / f"nacional_unbilled_{date}_{timestamp}.json"
-        )
+        if save:
+            current_datetime = datetime.now()
+            date = current_datetime.strftime("%d%m%Y")
+            timestamp = current_datetime.timestamp()
+            archivo_salida = (
+                workdir / "transacciones" / f"nacional_unbilled_{date}_{timestamp}.json"
+            )
 
-        os.makedirs(os.path.dirname(archivo_salida), exist_ok=True)
-        with open(archivo_salida, "w", encoding="utf-8") as f:
-            f.write(json.dumps(transacciones))
+            os.makedirs(os.path.dirname(archivo_salida), exist_ok=True)
+            with open(archivo_salida, "w", encoding="utf-8") as f:
+                f.write(json.dumps(transacciones))
 
-        print(f"Transacciones guardadas en {archivo_salida}")
+            print(f"Transacciones guardadas en {archivo_salida}")
+        return transacciones
+    return None
 
 
 if __name__ == "__main__":
