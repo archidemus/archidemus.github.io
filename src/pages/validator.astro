@@ -242,52 +242,62 @@
         const resultsContent = document.getElementById('resultsContent');
 
         // Drag and drop functionality
-        uploadArea.addEventListener('click', () => fileInput.click());
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            const files = e.dataTransfer.files;
-            if (files.length > 0) {
-                handleFile(files[0]);
-            }
-        });
+        if (uploadArea && fileInput) {
+            uploadArea.addEventListener('click', () => fileInput?.click());
 
-        fileInput.addEventListener('change', (e) => {
-            if (e.target.files.length > 0) {
-                handleFile(e.target.files[0]);
-            }
-        });
+            uploadArea.addEventListener('dragover', (e: DragEvent) => {
+                 e.preventDefault();
+                 uploadArea?.classList.add('dragover');
+             });
+ 
+             uploadArea.addEventListener('dragleave', () => {
+                 uploadArea?.classList.remove('dragover');
+             });
+ 
+             uploadArea.addEventListener('drop', (e: DragEvent) => {
+                 e.preventDefault();
+                 uploadArea?.classList.remove('dragover');
+                 const files = e.dataTransfer?.files;
+                 if (files && files.length > 0) {
+                     handleFile(files[0]);
+                 }
+             });
+ 
+             fileInput.addEventListener('change', (e: Event) => {
+                 const target = e.target as HTMLInputElement;
+                 if (target && target.files && target.files.length > 0) {
+                     handleFile(target.files[0]);
+                 }
+             });
+        }
 
-        function handleFile(file) {
+        function handleFile(file: File) {
             if (!file.name.match(/\.(xlsx|xls)$/)) {
                 showError('Por favor, selecciona un archivo Excel válido (.xlsx o .xls)');
                 return;
             }
 
-            loading.style.display = 'block';
-            results.style.display = 'none';
+            if (loading) loading.style.display = 'block';
+            if (results) results.style.display = 'none';
 
             const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = new Uint8Array(e.target.result);
-                    const workbook = XLSX.read(data, { type: 'array' });
-                    validateExcel(workbook);
-                } catch (error) {
-                    showError('Error al leer el archivo: ' + error.message);
-                }
-            };
+            reader.onload = function(e: ProgressEvent<FileReader>) {
+                 try {
+                     const result = e.target?.result;
+                     if (result instanceof ArrayBuffer) {
+                         const data = new Uint8Array(result);
+                         const workbook = (window as any).XLSX.read(data, { type: 'array' });
+                         validateExcel(workbook);
+                     }
+                 } catch (error) {
+                     const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+                     showError('Error al leer el archivo: ' + errorMessage);
+                 }
+             };
             reader.readAsArrayBuffer(file);
         }
 
-        function validateExcel(workbook) {
+        function validateExcel(workbook: any) {
             const sheetName = 'Proceso de cumplimiento';
             
             if (!workbook.SheetNames.includes(sheetName)) {
@@ -296,7 +306,7 @@
             }
 
             const worksheet = workbook.Sheets[sheetName];
-            const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+            const jsonData = (window as any).XLSX.utils.sheet_to_json(worksheet, { header: 1 });
             
             if (jsonData.length < 2) {
                 showError('El archivo no contiene suficientes datos.');
@@ -304,7 +314,7 @@
             }
 
             const headers = jsonData[0];
-            const requiredColumns = {
+            const requiredColumns: { [key: string]: number } = {
                 'Nombre del punto de control': -1,
                 'Descripcion': -1,
                 'Criterios de evaluación': -1,
@@ -314,7 +324,7 @@
             };
 
             // Find column indices
-            headers.forEach((header, index) => {
+            headers.forEach((header: any, index: number) => {
                 const normalizedHeader = header?.toString().trim();
                 Object.keys(requiredColumns).forEach(reqCol => {
                     if (normalizedHeader && normalizedHeader.toLowerCase().includes(reqCol.toLowerCase())) {
@@ -337,7 +347,7 @@
                 const rowNumber = i + 1;
                 
                 // Skip empty rows
-                if (!row || row.every(cell => !cell || cell.toString().trim() === '')) {
+                if (!row || row.every((cell: any) => !cell || cell.toString().trim() === '')) {
                     continue;
                 }
 
@@ -381,7 +391,7 @@
                  }
             }
 
-            loading.style.display = 'none';
+            if (loading) loading.style.display = 'none';
              
              if (errors.length === 0) {
                  showSuccessWithData('✅ El archivo es válido y cumple con todos los criterios.', jsonData, requiredColumns);
@@ -390,13 +400,13 @@
              }
         }
 
-        function isValidCommaSeparatedList(text) {
-            const items = text.split(',').map(item => item.trim());
-            return items.length > 0 && items.every(item => item.length > 0);
+        function isValidCommaSeparatedList(text: string) {
+            const items = text.split(',').map((item: string) => item.trim());
+            return items.length > 0 && items.every((item: string) => item.length > 0);
         }
 
-        function validateGoogleDriveLinks(text) {
-              const links = text.split('\n').map(link => link.trim()).filter(link => link !== '');
+        function validateGoogleDriveLinks(text: string) {
+              const links = text.split('\n').map((link: string) => link.trim()).filter((link: string) => link !== '');
               const googleDriveFilePattern = /^https:\/\/drive\.google\.com\/file\/d\/[a-zA-Z0-9_-]+/;
               const googleDriveFolderPattern = /^https:\/\/drive\.google\.com\/drive\/folders\/[a-zA-Z0-9_-]+/;
               
@@ -424,14 +434,14 @@
               return { isValid: true, error: null };
           }
 
-        function showSuccess(message) {
-             results.className = 'results success';
-             resultsContent.innerHTML = `<h3>${message}</h3>`;
-             results.style.display = 'block';
+        function showSuccess(message: string) {
+             if (results) results.className = 'results success';
+             if (resultsContent) resultsContent.innerHTML = `<h3>${message}</h3>`;
+             if (results) results.style.display = 'block';
          }
 
-         function showSuccessWithData(message, jsonData, requiredColumns) {
-             results.className = 'results success';
+         function showSuccessWithData(message: string, jsonData: any[], requiredColumns: any) {
+             if (results) results.className = 'results success';
              
              let html = `<h3>${message}</h3>`;
              html += '<h4 style="margin-top: 20px; margin-bottom: 15px;">📋 Contenido del archivo:</h4>';
@@ -455,7 +465,7 @@
                  const row = jsonData[i];
                  
                  // Skip empty rows
-                 if (!row || row.every(cell => !cell || cell.toString().trim() === '')) {
+                 if (!row || row.every((cell: any) => !cell || cell.toString().trim() === '')) {
                      continue;
                  }
                  
@@ -470,12 +480,12 @@
                       
                       if (commaListColumns.includes(col) && cellValue && cellValue.toString().includes(',')) {
                           // Create bullet list for comma-separated values
-                          const items = cellValue.toString().split(',').map(item => item.trim()).filter(item => item);
-                          displayValue = items.map(item => `• ${item}`).join('<br>');
+                          const items = cellValue.toString().split(',').map((item: string) => item.trim()).filter((item: string) => item);
+                           displayValue = items.map((item: string) => `• ${item}`).join('<br>');
                       } else if (linkColumns.includes(col) && cellValue && cellValue.toString().includes('\n')) {
                           // Create bullet list for line-separated links
-                          const links = cellValue.toString().split('\n').map(link => link.trim()).filter(link => link);
-                          displayValue = links.map(link => `• ${link}`).join('<br>');
+                          const links = cellValue.toString().split('\n').map((link: string) => link.trim()).filter((link: string) => link);
+                           displayValue = links.map((link: string) => `• ${link}`).join('<br>');
                       } else {
                           // Truncate long text for display
                           displayValue = cellValue.toString().length > 100 
@@ -493,27 +503,27 @@
              
              html += '<p style="margin-top: 15px; font-size: 0.9em; color: #666;">💡 Revisa que toda la información necesaria esté presente y sea correcta.</p>';
              
-             resultsContent.innerHTML = html;
-             results.style.display = 'block';
+             if (resultsContent) resultsContent.innerHTML = html;
+             if (results) results.style.display = 'block';
          }
 
-        function showError(message) {
-            loading.style.display = 'none';
-            results.className = 'results error';
-            resultsContent.innerHTML = `<h3>❌ Error de Validación</h3><p>${message}</p>`;
-            results.style.display = 'block';
-        }
-
-        function showErrors(errors) {
-            results.className = 'results error';
-            let errorHtml = `<h3>❌ Se encontraron ${errors.length} error(es):</h3><div class="error-list">`;
-            errors.forEach(error => {
-                errorHtml += `<div class="error-item">${error}</div>`;
-            });
-            errorHtml += '</div>';
-            resultsContent.innerHTML = errorHtml;
-            results.style.display = 'block';
-        }
+        function showError(message: string) {
+             if (loading) loading.style.display = 'none';
+             if (results) results.className = 'results error';
+             if (resultsContent) resultsContent.innerHTML = `<h3>❌ Error de Validación</h3><p>${message}</p>`;
+             if (results) results.style.display = 'block';
+         }
+ 
+         function showErrors(errors: string[]) {
+             if (results) results.className = 'results error';
+             let errorHtml = `<h3>❌ Se encontraron ${errors.length} error(es):</h3><div class="error-list">`;
+             errors.forEach((error: string) => {
+                 errorHtml += `<div class="error-item">${error}</div>`;
+             });
+             errorHtml += '</div>';
+             if (resultsContent) resultsContent.innerHTML = errorHtml;
+             if (results) results.style.display = 'block';
+         }
     </script>
 </body>
 </html>
