@@ -207,7 +207,7 @@ export default function PersonalPortfolio() {
               <p>
                 Hoy soy CTO y co-fundador de Zentia, un sistema de monitoreo del ciclo minero basado
                 en IoT. Paralelamente, lidero la automatización operacional de CPS Ingeniería —
-                empresa familiar de ingeniería eléctrica — donde dinseñamos soluciones para clientes
+                empresa familiar de ingeniería eléctrica — donde diseñamos soluciones para clientes
                 como Anglo American y CODELCO.
               </p>
             </div>
