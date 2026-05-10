@@ -7,6 +7,10 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: "https://archidemus.me",
   base: "",
+  compressHTML: true,
+  build: {
+    inlineStylesheets: "auto",
+  },
   integrations: [
     react(),
     tailwind({

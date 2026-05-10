@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import me from "@/assets/me.jpg";
+import me from "@/assets/me.webp";
 import { Mail, ArrowDown, ExternalLink } from "lucide-react";
 
 function LinkedInIcon({ className }: { className?: string }) {
