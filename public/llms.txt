@@ -1,0 +1,30 @@
+# archidemus.me
+
+> Sitio personal de Ignacio Norambuena, Ingeniero Civil Informático (UTFSM) y Co-fundador & CTO de Zentia.
+
+## Sobre mí
+
+Ing. Civil Informático de la UTFSM con 8 años de experiencia en desarrollo de software. Pasé por fintech (Penta), startups (Centry), y lideré equipos como tech lead en Unholster. Fui CPO de Trazit (ex Cumpl.io), startup seleccionada en Start-Up Chile SUP 10 (Build).
+
+Hoy soy CTO y co-fundador de Zentia, un sistema de monitoreo del ciclo minero basado en IoT. Construí el MVP completo: firmware en C++, backend en Hono, y frontend en React. Paralelamente, lidero la automatización operacional de CPS Ingeniería, donde desarrollé soluciones para clientes como Anglo American (división Los Bronces).
+
+## Proyectos
+
+### Zentia
+Sistema de monitoreo del ciclo minero basado en IoT. Red de sensores autónomos BLE que trackea personas, equipos y variables ambientales en tiempo real bajo tierra. CTO y co-fundador. Arquitectura full-stack: firmware C++, backend, frontend. MVP construido 100% por mí.
+
+### CPS Ingeniería
+Automatización operacional para empresa de ingeniería eléctrica fundada en 1997. Sistemas de automatización para minería. Pipeline automático de licitaciones. Cotizador paramétrico. Mejoras de productividad con IA.
+
+## Stack
+
+- Full-stack: React 19, TypeScript, Astro, Tailwind, Hono, Bun
+- IoT & Embedded: C++, PlatformIO, ESP32, BLE
+- Data & Backend: PostgreSQL, Supabase, Python
+- Automatización: Claude Code, Playwright, Pipelines IMAP, GitHub Actions
+
+## Contacto
+
+- LinkedIn: https://www.linkedin.com/in/inorambuenaa
+- GitHub: https://github.com/archidemus
+- Email: ignacio@archidemus.me
