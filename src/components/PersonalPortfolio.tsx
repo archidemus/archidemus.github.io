@@ -157,8 +157,7 @@ export default function PersonalPortfolio() {
               Co-fundador & CTO de Zentia &nbsp;|&nbsp; Ing. Civil Informático UTFSM
             </p>
             <p className="mx-auto mb-8 max-w-xl text-base text-muted-foreground">
-              Construyo software que resuelve problemas reales: IoT minero, automatización
-              industrial, productividad personal.
+              Construyo software que resuelve problemas reales.
             </p>
             <div className="mb-12 flex justify-center gap-4">
               <a
