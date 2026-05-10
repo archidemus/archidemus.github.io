@@ -223,14 +223,14 @@ export default function PersonalPortfolio() {
                   key={project.title}
                   role="listitem"
                   className={`rounded-xl border bg-card p-6 ${
-                    project.featured ? "border-accent/50 ring-1 ring-accent/20" : "border-border"
+                    project.featured ? "border-accent ring-1 ring-accent" : "border-border"
                   }`}
                 >
                   <div className="mb-2 flex items-start justify-between">
                     <h3 className="flex items-center gap-2 text-lg font-semibold">
                       {project.title}
                       {project.featured && (
-                        <span className="rounded-full border border-accent/30 bg-accent/10 px-2 py-0.5 text-xs font-medium text-accent">
+                        <span className="rounded-full border border-accent bg-accent px-2 py-0.5 text-xs font-medium text-accent-foreground">
                           Destacado
                         </span>
                       )}
