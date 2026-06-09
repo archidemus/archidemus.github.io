@@ -62,7 +62,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background font-sans text-foreground;
     background-image: radial-gradient(circle, hsl(10 6% 89% / 0.04) 1px, transparent 1px);
     background-size: 8px 8px;
   }
@@ -106,7 +106,9 @@
 
   /* Pixel-offset hover for cards */
   .pixel-card {
-    transition: transform 150ms ease, box-shadow 150ms ease;
+    transition:
+      transform 150ms ease,
+      box-shadow 150ms ease;
   }
   .pixel-card:hover {
     transform: translate(-2px, -2px);
@@ -115,14 +117,7 @@
 
   /* Chamfered corners for primary buttons */
   .btn-chamfer {
-    clip-path: polygon(
-      6px 0,
-      100% 0,
-      100% calc(100% - 6px),
-      calc(100% - 6px) 100%,
-      0 100%,
-      0 6px
-    );
+    clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
   }
 
   /* Chip with + corner markers */
@@ -159,11 +154,22 @@
 }
 
 @keyframes blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes pixel-pulse {
-  0%, 100% { border-color: hsl(175 100% 43.5%); }
-  50% { border-color: hsl(175 100% 43.5% / 0.25); }
+  0%,
+  100% {
+    border-color: hsl(175 100% 43.5%);
+  }
+  50% {
+    border-color: hsl(175 100% 43.5% / 0.25);
+  }
 }

@@ -107,8 +107,7 @@ const projects = [
   {
     title: "CPS Ingeniería",
     featured: false,
-    description:
-      "Automatización operacional para empresa de ingeniería eléctrica fundada en 1997",
+    description: "Automatización operacional para empresa de ingeniería eléctrica fundada en 1997",
     details:
       "Sistemas de automatización para minería. Pipeline automático de licitaciones. Cotizador paramétrico. Mejoras de productividad con IA.",
   },
@@ -129,12 +128,7 @@ const stackGroups = [
   },
   {
     label: "Automatización",
-    items: [
-      "Claude Code",
-      "Playwright",
-      "Pipelines IMAP",
-      "GitHub Actions",
-    ],
+    items: ["Claude Code", "Playwright", "Pipelines IMAP", "GitHub Actions"],
   },
 ];
 
@@ -149,29 +143,20 @@ export default function PersonalPortfolio() {
           aria-label="Navegación principal"
           className="mx-auto flex h-12 max-w-4xl items-center justify-between px-4 md:px-16"
         >
-          <a
-            href="#hero"
-            className="font-mono text-sm font-medium tracking-label text-primary"
-          >
+          <a href="#hero" className="font-mono text-sm font-medium tracking-label text-primary">
             IN_
           </a>
           <div className="hidden items-center gap-6 font-mono text-[11px] font-medium uppercase tracking-label text-muted-foreground sm:flex">
             <a href="#about" className="transition-colors hover:text-primary">
               Sobre
             </a>
-            <a
-              href="#projects"
-              className="transition-colors hover:text-primary"
-            >
+            <a href="#projects" className="transition-colors hover:text-primary">
               Proyectos
             </a>
             <a href="#stack" className="transition-colors hover:text-primary">
               Stack
             </a>
-            <a
-              href="#contact"
-              className="transition-colors hover:text-primary"
-            >
+            <a href="#contact" className="transition-colors hover:text-primary">
               Contacto
             </a>
           </div>
@@ -203,7 +188,7 @@ export default function PersonalPortfolio() {
             {/* Role — JetBrains Mono, uppercase, with blinking cursor */}
             <p className="mb-2 inline-flex items-center gap-1 font-mono text-[11px] font-medium uppercase tracking-label text-primary sm:text-xs">
               <span>&gt; Ing. Civil Informático // CTO @ Zentia</span>
-              <span className="inline-block h-3.5 w-2 animate-blink bg-primary align-middle" />
+              <span className="animate-blink inline-block h-3.5 w-2 bg-primary align-middle" />
             </p>
 
             <p className="mx-auto mb-8 mt-4 max-w-lg text-body-md tracking-body text-muted-foreground">
@@ -217,7 +202,7 @@ export default function PersonalPortfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Perfil de LinkedIn de Ignacio Norambuena"
-                className="btn-chamfer inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary hover:bg-dither-teal"
+                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary"
               >
                 <LinkedInIcon className="h-3.5 w-3.5" aria-hidden="true" />
                 LinkedIn
@@ -227,7 +212,7 @@ export default function PersonalPortfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Perfil de GitHub de Ignacio Norambuena"
-                className="btn-chamfer inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary hover:bg-dither-teal"
+                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary"
               >
                 <GitHubIcon className="h-3.5 w-3.5" aria-hidden="true" />
                 GitHub
@@ -257,21 +242,18 @@ export default function PersonalPortfolio() {
               aria-labelledby="about-title"
             >
               <p>
-                Ing. Civil Informático de la UTFSM con 8 años de experiencia en
-                desarrollo de software. Pasé por fintech (Penta), startups
-                (Centry), y lideré equipos como tech lead en Unholster, donde
-                desarrollé plataformas con diversas tecnologías. Fui CPO de
-                Trazit (ex Cumpl.io), startup seleccionada en Start-Up Chile SUP
-                10 (Build).
+                Ing. Civil Informático de la UTFSM con 8 años de experiencia en desarrollo de
+                software. Pasé por fintech (Penta), startups (Centry), y lideré equipos como tech
+                lead en Unholster, donde desarrollé plataformas con diversas tecnologías. Fui CPO de
+                Trazit (ex Cumpl.io), startup seleccionada en Start-Up Chile SUP 10 (Build).
               </p>
               <p>
                 Hoy soy CTO y co-fundador de&nbsp;
-                <span className="text-foreground">Zentia</span>, un sistema de
-                monitoreo del ciclo minero basado en IoT. Paralelamente, lidero
-                la automatización operacional de{" "}
-                <span className="text-foreground">CPS Ingeniería</span> —
-                empresa familiar de ingeniería eléctrica — donde diseñamos
-                soluciones para clientes como Anglo American y CODELCO.
+                <span className="text-foreground">Zentia</span>, un sistema de monitoreo del ciclo
+                minero basado en IoT. Paralelamente, lidero la automatización operacional de{" "}
+                <span className="text-foreground">CPS Ingeniería</span> — empresa familiar de
+                ingeniería eléctrica — donde diseñamos soluciones para clientes como Anglo American
+                y CODELCO.
               </p>
             </div>
           </div>
@@ -280,27 +262,17 @@ export default function PersonalPortfolio() {
         <DitherDivider />
 
         {/* ── Projects ── */}
-        <Section
-          id="projects"
-          ariaLabel="Proyectos"
-          className="px-4 py-20 md:px-16"
-        >
+        <Section id="projects" ariaLabel="Proyectos" className="px-4 py-20 md:px-16">
           <div className="mx-auto max-w-4xl">
             <SectionLabel>Proyectos</SectionLabel>
             <SectionTitle>Proyectos</SectionTitle>
-            <div
-              className="mt-6 space-y-4"
-              role="list"
-              aria-labelledby="projects-title"
-            >
+            <div className="mt-6 space-y-4" role="list" aria-labelledby="projects-title">
               {projects.map((project) => (
                 <article
                   key={project.title}
                   role="listitem"
                   className={`pixel-card inner-glow border p-6 ${
-                    project.featured
-                      ? "border-primary"
-                      : "border-border"
+                    project.featured ? "border-primary" : "border-border"
                   }`}
                 >
                   {/* Header row */}
@@ -333,7 +305,7 @@ export default function PersonalPortfolio() {
                     {project.details}
                   </p>
                   {project.role && (
-                    <p className="text-sm tracking-body text-muted-foreground italic">
+                    <p className="text-sm italic tracking-body text-muted-foreground">
                       {project.role}
                     </p>
                   )}
@@ -359,17 +331,11 @@ export default function PersonalPortfolio() {
               aria-labelledby="stack-title"
             >
               {stackGroups.map((group) => (
-                <div
-                  key={group.label}
-                  className="inner-glow border border-border p-5"
-                >
+                <div key={group.label} className="inner-glow border border-border p-5">
                   <h3 className="mb-3 font-mono text-[11px] font-medium uppercase tracking-label text-primary">
                     {group.label}
                   </h3>
-                  <ul
-                    className="flex flex-wrap gap-2"
-                    aria-label={`Habilidades en ${group.label}`}
-                  >
+                  <ul className="flex flex-wrap gap-2" aria-label={`Habilidades en ${group.label}`}>
                     {group.items.map((item) => (
                       <li key={item} className="chip">
                         <span className="border border-border px-2.5 py-1 font-mono text-[11px] tracking-label text-muted-foreground transition-colors hover:border-primary hover:text-foreground">
@@ -387,17 +353,13 @@ export default function PersonalPortfolio() {
         <DitherDivider />
 
         {/* ── Contact ── */}
-        <Section
-          id="contact"
-          ariaLabel="Contacto"
-          className="px-4 pb-28 pt-20 md:px-16"
-        >
+        <Section id="contact" ariaLabel="Contacto" className="px-4 pb-28 pt-20 md:px-16">
           <div className="mx-auto max-w-4xl text-center">
             <SectionLabel>Contacto</SectionLabel>
             <SectionTitle>Conversemos</SectionTitle>
-            <p className="mt-3 mb-6 text-body-md tracking-body text-muted-foreground">
-              Siempre abierto a conversar sobre tecnología, IoT, minería o
-              cualquier proyecto interesante.
+            <p className="mb-6 mt-3 text-body-md tracking-body text-muted-foreground">
+              Siempre abierto a conversar sobre tecnología, IoT, minería o cualquier proyecto
+              interesante.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <a
@@ -405,7 +367,7 @@ export default function PersonalPortfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Contactar por LinkedIn"
-                className="btn-chamfer inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary hover:bg-dither-teal"
+                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary"
               >
                 <LinkedInIcon className="h-3.5 w-3.5" aria-hidden="true" />
                 LinkedIn
@@ -415,7 +377,7 @@ export default function PersonalPortfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Ver perfil de GitHub"
-                className="btn-chamfer inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary hover:bg-dither-teal"
+                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary"
               >
                 <GitHubIcon className="h-3.5 w-3.5" aria-hidden="true" />
                 GitHub
@@ -423,7 +385,7 @@ export default function PersonalPortfolio() {
               <a
                 href="mailto:ignacio@archidemus.me"
                 aria-label="Enviar email a ignacio@archidemus.me"
-                className="btn-chamfer inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary hover:bg-dither-teal"
+                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary"
               >
                 <Mail className="h-3.5 w-3.5" aria-hidden="true" />
                 Email
@@ -438,12 +400,13 @@ export default function PersonalPortfolio() {
         <div className="mx-auto flex max-w-4xl items-center justify-between px-4 md:px-16">
           <p className="font-mono text-[11px] tracking-label text-muted-foreground">
             &copy;{" "}
-            <time dateTime={new Date().getFullYear().toString()}>
-              {new Date().getFullYear()}
-            </time>{" "}
+            <time dateTime={new Date().getFullYear().toString()}>{new Date().getFullYear()}</time>{" "}
             Ignacio Norambuena
           </p>
-          <span className="inline-block h-2 w-2 border border-primary bg-primary animate-pixel-pulse" aria-hidden="true" />
+          <span
+            className="animate-pixel-pulse inline-block h-2 w-2 border border-primary bg-primary"
+            aria-hidden="true"
+          />
         </div>
       </footer>
     </div>
