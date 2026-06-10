@@ -71,7 +71,7 @@ function Section({
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <span className="font-mono text-[11px] font-medium uppercase tracking-label text-primary">
+    <span className="font-pixel text-[11px] uppercase tracking-label-sm text-primary">
       // {children}
     </span>
   );
@@ -79,7 +79,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="mt-2 text-headline-sm font-semibold tracking-headlineSm text-foreground sm:text-headline-md sm:tracking-headlineMd">
+    <h2 className="mt-2 font-pixel text-headline-sm tracking-headlineSm text-foreground sm:text-headline-md sm:tracking-headlineMd">
       {children}
     </h2>
   );
@@ -143,10 +143,10 @@ export default function PersonalPortfolio() {
           aria-label="Navegación principal"
           className="mx-auto flex h-12 max-w-4xl items-center justify-between px-4 md:px-16"
         >
-          <a href="#hero" className="font-mono text-sm font-medium tracking-label text-primary">
+          <a href="#hero" className="font-pixel text-sm tracking-label text-primary">
             IN_
           </a>
-          <div className="hidden items-center gap-6 font-mono text-[11px] font-medium uppercase tracking-label text-muted-foreground sm:flex">
+          <div className="hidden items-center gap-6 font-pixel text-[11px] uppercase tracking-label-sm text-muted-foreground sm:flex">
             <a href="#about" className="transition-colors hover:text-primary">
               Sobre
             </a>
@@ -180,13 +180,13 @@ export default function PersonalPortfolio() {
               className="mx-auto mb-8 h-28 w-28 border border-primary object-cover"
             />
 
-            {/* Name — Geist headline-lg, tight tracking */}
-            <h1 className="mb-4 text-headline-lg-mobile font-bold tracking-headline text-foreground sm:text-headline-lg sm:tracking-headline">
+            {/* Name — GeistPixel, the pixel IS the texture */}
+            <h1 className="mb-4 font-pixel-grid text-headline-lg-mobile tracking-headline text-foreground sm:text-headline-lg sm:tracking-headline">
               Ignacio Norambuena
             </h1>
 
-            {/* Role — JetBrains Mono, uppercase, with blinking cursor */}
-            <p className="mb-2 inline-flex items-center gap-1 font-mono text-[11px] font-medium uppercase tracking-label text-primary sm:text-xs">
+            {/* Role — pixel font, uppercase, blinking cursor */}
+            <p className="mb-2 inline-flex items-center gap-1 font-pixel text-[11px] uppercase tracking-label-sm text-primary sm:text-xs">
               <span>&gt; Ing. Civil Informático // CTO @ Zentia</span>
               <span className="animate-blink inline-block h-3.5 w-2 bg-primary align-middle" />
             </p>
@@ -195,14 +195,14 @@ export default function PersonalPortfolio() {
               Apasionado por crear soluciones tecnológicas que impactan.
             </p>
 
-            {/* Social links — chamfered buttons */}
+            {/* Social links — chamfered pixel buttons */}
             <div className="mb-12 flex justify-center gap-3">
               <a
                 href="https://www.linkedin.com/in/inorambuenaa"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Perfil de LinkedIn de Ignacio Norambuena"
-                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary"
+                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-pixel text-[11px] uppercase tracking-label-sm text-foreground transition-colors hover:border-primary"
               >
                 <LinkedInIcon className="h-3.5 w-3.5" aria-hidden="true" />
                 LinkedIn
@@ -212,7 +212,7 @@ export default function PersonalPortfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Perfil de GitHub de Ignacio Norambuena"
-                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary"
+                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-pixel text-[11px] uppercase tracking-label-sm text-foreground transition-colors hover:border-primary"
               >
                 <GitHubIcon className="h-3.5 w-3.5" aria-hidden="true" />
                 GitHub
@@ -277,12 +277,12 @@ export default function PersonalPortfolio() {
                 >
                   {/* Header row */}
                   <div className="mb-3 flex items-start justify-between">
-                    <h3 className="text-base font-semibold text-foreground sm:text-lg">
+                    <h3 className="font-pixel text-base tracking-headline text-foreground sm:text-lg">
                       {project.title}
                     </h3>
                     <div className="flex items-center gap-2">
                       {project.featured && (
-                        <span className="animate-pixel-pulse inline-flex items-center gap-1.5 border border-primary px-2 py-0.5 font-mono text-[10px] font-medium uppercase tracking-label text-primary">
+                        <span className="animate-pixel-pulse inline-flex items-center gap-1.5 border border-primary px-2 py-0.5 font-pixel text-[10px] uppercase tracking-label-sm text-primary">
                           <span
                             className="inline-block h-1.5 w-1.5 bg-primary"
                             aria-hidden="true"
@@ -332,13 +332,13 @@ export default function PersonalPortfolio() {
             >
               {stackGroups.map((group) => (
                 <div key={group.label} className="inner-glow border border-border p-5">
-                  <h3 className="mb-3 font-mono text-[11px] font-medium uppercase tracking-label text-primary">
+                  <h3 className="mb-3 font-pixel text-[11px] uppercase tracking-label-sm text-primary">
                     {group.label}
                   </h3>
                   <ul className="flex flex-wrap gap-2" aria-label={`Habilidades en ${group.label}`}>
                     {group.items.map((item) => (
                       <li key={item} className="chip">
-                        <span className="border border-border px-2.5 py-1 font-mono text-[11px] tracking-label text-muted-foreground transition-colors hover:border-primary hover:text-foreground">
+                        <span className="border border-border px-2.5 py-1 font-pixel text-[11px] tracking-label-sm text-muted-foreground transition-colors hover:border-primary hover:text-foreground">
                           {item}
                         </span>
                       </li>
@@ -367,7 +367,7 @@ export default function PersonalPortfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Contactar por LinkedIn"
-                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary"
+                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-pixel text-[11px] uppercase tracking-label-sm text-foreground transition-colors hover:border-primary"
               >
                 <LinkedInIcon className="h-3.5 w-3.5" aria-hidden="true" />
                 LinkedIn
@@ -377,7 +377,7 @@ export default function PersonalPortfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Ver perfil de GitHub"
-                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary"
+                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-pixel text-[11px] uppercase tracking-label-sm text-foreground transition-colors hover:border-primary"
               >
                 <GitHubIcon className="h-3.5 w-3.5" aria-hidden="true" />
                 GitHub
@@ -385,7 +385,7 @@ export default function PersonalPortfolio() {
               <a
                 href="mailto:ignacio@archidemus.me"
                 aria-label="Enviar email a ignacio@archidemus.me"
-                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-label text-foreground transition-colors hover:border-primary"
+                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-pixel text-[11px] uppercase tracking-label-sm text-foreground transition-colors hover:border-primary"
               >
                 <Mail className="h-3.5 w-3.5" aria-hidden="true" />
                 Email
@@ -398,7 +398,7 @@ export default function PersonalPortfolio() {
       {/* ── Footer ── */}
       <footer className="border-t border-border py-6">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-4 md:px-16">
-          <p className="font-mono text-[11px] tracking-label text-muted-foreground">
+          <p className="font-pixel text-[11px] tracking-label-sm text-muted-foreground">
             &copy;{" "}
             <time dateTime={new Date().getFullYear().toString()}>{new Date().getFullYear()}</time>{" "}
             Ignacio Norambuena
