@@ -1,5 +1,6 @@
 # Estándar de Calidad (estandar/configs/ci/quality.yml) — ajustado para este repo
-# (solo JS/TS; sin job Python).
+# (solo JS/TS; sin job Python). Secrets se cubren con betterleaks en pre-commit
+# local (lefthook) — en CI era frágil (brew en runner) y redundante.
 
 name: Calidad y seguridad
 
@@ -25,7 +26,7 @@ jobs:
       - run: bun run test:coverage
 
   security:
-    name: Seguridad · semgrep + osv-scanner + betterleaks
+    name: Seguridad · semgrep + osv-scanner
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -40,8 +41,3 @@ jobs:
         uses: google/osv-scanner/actions/scanner@v2
         with:
           scan-args: "-r ."
-
-      - name: Secrets (betterleaks, historia git completa)
-        run: |
-          brew install betterleaks
-          betterleaks git .
