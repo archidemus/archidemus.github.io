@@ -22,13 +22,15 @@ jobs:
       - run: bun run lint
       - run: bun run format:check
       - run: bun run typecheck
-      - run: bun run test
+      - run: bun run test:coverage
 
   security:
     name: Seguridad · semgrep + osv-scanner + betterleaks
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
       - uses: astral-sh/setup-uv@v10
 
       - name: SAST (semgrep)

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { projects, stackGroups, featuredProjects } from "./portfolio";
+import { projects, stackGroups } from "./portfolio";
 
 describe("projects", () => {
   it("tiene al menos un proyecto destacado y uno no destacado", () => {
@@ -20,15 +20,9 @@ describe("projects", () => {
   });
 
   it("los proyectos destacados tienen rol (se renderiza en la tarjeta)", () => {
-    for (const project of featuredProjects()) {
+    for (const project of projects.filter((p) => p.featured)) {
       expect(project.role?.trim().length).toBeGreaterThan(0);
     }
-  });
-
-  it("featuredProjects() devuelve exactamente los proyectos con featured=true", () => {
-    const expected = projects.filter((p) => p.featured);
-    expect(featuredProjects()).toEqual(expected);
-    expect(featuredProjects().every((p) => p.featured)).toBe(true);
   });
 });
 

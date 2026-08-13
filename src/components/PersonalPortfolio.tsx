@@ -202,10 +202,7 @@ export default function PersonalPortfolio() {
           <div className="mx-auto max-w-4xl">
             <SectionLabel>Sobre mí</SectionLabel>
             <SectionTitle>Sobre mí</SectionTitle>
-            <div
-              className="mt-6 space-y-4 text-body-md tracking-body text-muted-foreground sm:text-body-lg"
-              aria-labelledby="about-title"
-            >
+            <div className="mt-6 space-y-4 text-body-md tracking-body text-muted-foreground sm:text-body-lg">
               <p>
                 Ing. Civil Informático de la UTFSM con 8 años de experiencia en desarrollo de
                 software. Pasé por fintech (Penta), startups (Centry), y lideré equipos como tech
@@ -231,7 +228,7 @@ export default function PersonalPortfolio() {
           <div className="mx-auto max-w-4xl">
             <SectionLabel>Proyectos</SectionLabel>
             <SectionTitle>Proyectos</SectionTitle>
-            <div className="mt-6 space-y-4" aria-labelledby="projects-title">
+            <div className="mt-6 space-y-4">
               {projects.map((project) => (
                 <article
                   key={project.title}
@@ -290,10 +287,7 @@ export default function PersonalPortfolio() {
           <div className="mx-auto max-w-4xl">
             <SectionLabel>Stack</SectionLabel>
             <SectionTitle>Stack y habilidades</SectionTitle>
-            <div
-              className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2"
-              aria-labelledby="stack-title"
-            >
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {stackGroups.map((group) => (
                 <div key={group.label} className="inner-glow border border-border p-5">
                   <h3 className="mb-3 font-pixel text-[11px] uppercase tracking-label-sm text-primary">

@@ -11,14 +11,6 @@ updates:
       minor-patch:
         update-types: ["minor", "patch"]
 
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    groups:
-      minor-patch:
-        update-types: ["minor", "patch"]
-
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:

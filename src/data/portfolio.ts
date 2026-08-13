@@ -47,7 +47,3 @@ export const stackGroups: StackGroup[] = [
     items: ["Claude Code", "Playwright", "Pipelines IMAP", "GitHub Actions"],
   },
 ];
-
-export function featuredProjects(): Project[] {
-  return projects.filter((p) => p.featured);
-}

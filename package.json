@@ -1,5 +1,5 @@
 {
-  "name": "desktop-aiwalk",
+  "name": "archidemus.github.io",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -9,16 +9,17 @@
     "preview": "astro preview",
     "astro": "astro",
     "gen:og": "bun run scripts/og.mjs",
-    "format": "prettier --write \"src/**/*.{astro,tsx,ts,css,mjs}\"",
-    "format:check": "prettier --check \"src/**/*.{astro,tsx,ts,css,mjs}\"",
+    "format": "prettier --write \"src/**/*.{astro,tsx,ts,js,jsx,css,mjs}\" \"scripts/**/*.mjs\" \"*.config.ts\" \"vitest.config.ts\"",
+    "format:check": "prettier --check \"src/**/*.{astro,tsx,ts,js,jsx,css,mjs}\" \"scripts/**/*.mjs\" \"*.config.ts\" \"vitest.config.ts\"",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "check": "prettier --check \"src/**/*.{astro,tsx,ts,css,mjs}\" && oxlint && astro check && astro build",
-    "fix": "prettier --write \"src/**/*.{astro,tsx,ts,css,mjs}\" && oxlint --fix",
+    "check": "prettier --check \"src/**/*.{astro,tsx,ts,js,jsx,css,mjs}\" \"scripts/**/*.mjs\" \"*.config.ts\" \"vitest.config.ts\" && oxlint && astro check && astro build",
+    "fix": "prettier --write \"src/**/*.{astro,tsx,ts,js,jsx,css,mjs}\" \"scripts/**/*.mjs\" \"*.config.ts\" \"vitest.config.ts\" && oxlint --fix",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "quality:local": "oxlint && prettier --check \"src/**/*.{astro,tsx,ts,js,jsx,css,mjs}\" && vitest run --coverage",
-    "typecheck": "astro check"
+    "quality:local": "oxlint && prettier --check \"src/**/*.{astro,tsx,ts,js,jsx,css,mjs}\" \"scripts/**/*.mjs\" \"*.config.ts\" \"vitest.config.ts\" && vitest run --coverage",
+    "typecheck": "astro check",
+    "prepare": "lefthook install"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",

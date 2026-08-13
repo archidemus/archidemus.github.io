@@ -8,5 +8,6 @@
       "@/*": ["./src/*"]
     },
     "ignoreDeprecations": "6.0"
-  }
+  },
+  "exclude": ["node_modules", "dist", "coverage", ".astro"]
 }

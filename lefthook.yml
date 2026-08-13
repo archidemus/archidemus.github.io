@@ -1,8 +1,9 @@
 # Estándar Lefthook — Fase 1 (formato/lint/secrets) en pre-commit, Fase 2/3 en pre-push.
-# Requiere: bun, uv, betterleaks, osv-scanner (ver estandar/README.md).
+# Requiere: bun, betterleaks, osv-scanner.
+# Bootstrap: brew install betterleaks osv-scanner && bunx lefthook install
 
 pre-commit:
-  parallel: true
+  parallel: false
   commands:
     format-js:
       glob: "*.{js,ts,jsx,tsx,astro,mjs,cjs}"
@@ -11,14 +12,6 @@ pre-commit:
     lint-js:
       glob: "*.{js,ts,jsx,tsx,astro,mjs,cjs}"
       run: bunx oxlint --fix {staged_files}
-      stage_fixed: true
-    format-py:
-      glob: "*.py"
-      run: uv run ruff format {staged_files}
-      stage_fixed: true
-    lint-py:
-      glob: "*.py"
-      run: uv run ruff check --fix {staged_files}
       stage_fixed: true
     secrets:
       glob: "*.{js,ts,jsx,tsx,astro,py,mjs,cjs,json,jsonc,yaml,yml,toml,md,sh}"
@@ -29,6 +22,8 @@ pre-push:
   commands:
     deps-audit:
       run: osv-scanner scan source -r .
+      skip:
+        - run: test ! -x "$(command -v osv-scanner)"
     typecheck:
       run: bunx astro check
       skip:

@@ -50,7 +50,7 @@ Sistemas de automatización orientados a minería.
 - Pipeline automático de licitaciones.
 - Cotizador paramétrico.
 - Mejoras de productividad con IA.
-- Clientes: Anglo American (división Los Bronces), CODELCO.
+- Clientes: Anglo American (división Los Bronces).
 
 ## Stack técnico
 
