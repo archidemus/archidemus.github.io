@@ -1,8 +1,8 @@
 // @ts-check
 import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
 
 import react from "@astrojs/react";
-import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
   site: "https://archidemus.me",
@@ -11,10 +11,8 @@ export default defineConfig({
   build: {
     inlineStylesheets: "auto",
   },
-  integrations: [
-    react(),
-    tailwind({
-      applyBaseStyles: false,
-    }),
-  ],
+  integrations: [react()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

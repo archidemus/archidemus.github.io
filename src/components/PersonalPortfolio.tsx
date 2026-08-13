@@ -72,7 +72,7 @@ function Section({
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <span className="font-pixel text-[11px] uppercase tracking-label-sm text-primary">
+    <span className="font-pixel tracking-label-sm text-primary text-[11px] uppercase">
       {"// "}
       {children}
     </span>
@@ -81,7 +81,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="mt-2 font-pixel text-headline-sm tracking-headlineSm text-foreground sm:text-headline-md sm:tracking-headlineMd">
+    <h2 className="font-pixel text-headline-sm tracking-headline-sm text-foreground sm:text-headline-md sm:tracking-headline-md mt-2">
       {children}
     </h2>
   );
@@ -103,25 +103,25 @@ export default function PersonalPortfolio() {
   return (
     <div className="min-h-screen">
       {/* ── Header ── */}
-      <header className="fixed left-0 right-0 top-0 z-50 border-b border-border bg-background">
+      <header className="border-border bg-background fixed top-0 right-0 left-0 z-50 border-b">
         <nav
           aria-label="Navegación principal"
           className="mx-auto flex h-12 max-w-4xl items-center justify-between px-4 md:px-16"
         >
-          <a href="#hero" className="font-pixel text-sm tracking-label text-primary">
+          <a href="#hero" className="font-pixel tracking-label text-primary text-sm">
             IN_
           </a>
-          <div className="hidden items-center gap-6 font-pixel text-[11px] uppercase tracking-label-sm text-muted-foreground sm:flex">
-            <a href="#about" className="transition-colors hover:text-primary">
+          <div className="font-pixel tracking-label-sm text-muted-foreground hidden items-center gap-6 text-[11px] uppercase sm:flex">
+            <a href="#about" className="hover:text-primary transition-colors">
               Sobre
             </a>
-            <a href="#projects" className="transition-colors hover:text-primary">
+            <a href="#projects" className="hover:text-primary transition-colors">
               Proyectos
             </a>
-            <a href="#stack" className="transition-colors hover:text-primary">
+            <a href="#stack" className="hover:text-primary transition-colors">
               Stack
             </a>
-            <a href="#contact" className="transition-colors hover:text-primary">
+            <a href="#contact" className="hover:text-primary transition-colors">
               Contacto
             </a>
           </div>
@@ -142,21 +142,21 @@ export default function PersonalPortfolio() {
               alt="Foto de Ignacio Norambuena, Ingeniero Civil Informático y CTO de Zentia"
               width={112}
               height={112}
-              className="mx-auto mb-8 h-28 w-28 border border-primary object-cover"
+              className="border-primary mx-auto mb-8 h-28 w-28 border object-cover"
             />
 
             {/* Name — GeistPixel, the pixel IS the texture */}
-            <h1 className="mb-4 font-pixel-grid text-headline-lg-mobile tracking-headline text-foreground sm:text-headline-lg sm:tracking-headline">
+            <h1 className="font-pixel-grid text-headline-lg-mobile tracking-headline text-foreground sm:text-headline-lg sm:tracking-headline mb-4">
               Ignacio Norambuena
             </h1>
 
             {/* Role — pixel font, uppercase, blinking cursor */}
-            <p className="mb-2 inline-flex items-center gap-1 font-pixel text-[11px] uppercase tracking-label-sm text-primary sm:text-xs">
+            <p className="font-pixel tracking-label-sm text-primary mb-2 inline-flex items-center gap-1 text-[11px] uppercase sm:text-xs">
               <span>&gt; Ing. Civil Informático // CTO @ Zentia</span>
-              <span className="animate-blink inline-block h-3.5 w-2 bg-primary align-middle" />
+              <span className="animate-blink bg-primary inline-block h-3.5 w-2 align-middle" />
             </p>
 
-            <p className="mx-auto mb-8 mt-4 max-w-lg text-body-md tracking-body text-muted-foreground">
+            <p className="text-body-md tracking-body text-muted-foreground mx-auto mt-4 mb-8 max-w-lg">
               Apasionado por crear soluciones tecnológicas que impactan.
             </p>
 
@@ -167,7 +167,7 @@ export default function PersonalPortfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Perfil de LinkedIn de Ignacio Norambuena"
-                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-pixel text-[11px] uppercase tracking-label-sm text-foreground transition-colors hover:border-primary"
+                className="btn-chamfer hover:bg-dither-teal border-border font-pixel tracking-label-sm text-foreground hover:border-primary inline-flex items-center gap-2 border px-4 py-2 text-[11px] uppercase transition-colors"
               >
                 <LinkedInIcon className="h-3.5 w-3.5" aria-hidden="true" />
                 LinkedIn
@@ -177,7 +177,7 @@ export default function PersonalPortfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Perfil de GitHub de Ignacio Norambuena"
-                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-pixel text-[11px] uppercase tracking-label-sm text-foreground transition-colors hover:border-primary"
+                className="btn-chamfer hover:bg-dither-teal border-border font-pixel tracking-label-sm text-foreground hover:border-primary inline-flex items-center gap-2 border px-4 py-2 text-[11px] uppercase transition-colors"
               >
                 <GitHubIcon className="h-3.5 w-3.5" aria-hidden="true" />
                 GitHub
@@ -188,7 +188,7 @@ export default function PersonalPortfolio() {
             <a
               href="#about"
               aria-label="Ir a sección Sobre mí"
-              className="inline-block text-muted-foreground transition-colors hover:text-primary"
+              className="text-muted-foreground hover:text-primary inline-block transition-colors"
             >
               <ArrowDown className="mx-auto h-4 w-4 animate-bounce" aria-hidden="true" />
             </a>
@@ -202,7 +202,7 @@ export default function PersonalPortfolio() {
           <div className="mx-auto max-w-4xl">
             <SectionLabel>Sobre mí</SectionLabel>
             <SectionTitle>Sobre mí</SectionTitle>
-            <div className="mt-6 space-y-4 text-body-md tracking-body text-muted-foreground sm:text-body-lg">
+            <div className="text-body-md tracking-body text-muted-foreground sm:text-body-lg mt-6 space-y-4">
               <p>
                 Ing. Civil Informático de la UTFSM con 8 años de experiencia en desarrollo de
                 software. Pasé por fintech (Penta), startups (Centry), y lideré equipos como tech
@@ -238,35 +238,35 @@ export default function PersonalPortfolio() {
                 >
                   {/* Header row */}
                   <div className="mb-3 flex items-start justify-between">
-                    <h3 className="font-pixel text-base tracking-headline text-foreground sm:text-lg">
+                    <h3 className="font-pixel tracking-headline text-foreground text-base sm:text-lg">
                       {project.title}
                     </h3>
                     <div className="flex items-center gap-2">
                       {project.featured && (
-                        <span className="animate-pixel-pulse inline-flex items-center gap-1.5 border border-primary px-2 py-0.5 font-pixel text-[10px] uppercase tracking-label-sm text-primary">
+                        <span className="animate-pixel-pulse border-primary font-pixel tracking-label-sm text-primary inline-flex items-center gap-1.5 border px-2 py-0.5 text-[10px] uppercase">
                           <span
-                            className="inline-block h-1.5 w-1.5 bg-primary"
+                            className="bg-primary inline-block h-1.5 w-1.5"
                             aria-hidden="true"
                           />
                           Destacado
                         </span>
                       )}
                       <ExternalLink
-                        className="h-3.5 w-3.5 shrink-0 text-muted-foreground"
+                        className="text-muted-foreground h-3.5 w-3.5 shrink-0"
                         aria-hidden="true"
                       />
                     </div>
                   </div>
 
                   {/* Description */}
-                  <p className="mb-1 text-sm tracking-body text-foreground">
+                  <p className="tracking-body text-foreground mb-1 text-sm">
                     {project.description}
                   </p>
-                  <p className="mb-1 text-sm tracking-body text-muted-foreground">
+                  <p className="tracking-body text-muted-foreground mb-1 text-sm">
                     {project.details}
                   </p>
                   {project.role && (
-                    <p className="text-sm italic tracking-body text-muted-foreground">
+                    <p className="tracking-body text-muted-foreground text-sm italic">
                       {project.role}
                     </p>
                   )}
@@ -289,14 +289,14 @@ export default function PersonalPortfolio() {
             <SectionTitle>Stack y habilidades</SectionTitle>
             <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {stackGroups.map((group) => (
-                <div key={group.label} className="inner-glow border border-border p-5">
-                  <h3 className="mb-3 font-pixel text-[11px] uppercase tracking-label-sm text-primary">
+                <div key={group.label} className="inner-glow border-border border p-5">
+                  <h3 className="font-pixel tracking-label-sm text-primary mb-3 text-[11px] uppercase">
                     {group.label}
                   </h3>
                   <ul className="flex flex-wrap gap-2" aria-label={`Habilidades en ${group.label}`}>
                     {group.items.map((item) => (
                       <li key={item} className="chip">
-                        <span className="border border-border px-2.5 py-1 font-pixel text-[11px] tracking-label-sm text-muted-foreground transition-colors hover:border-primary hover:text-foreground">
+                        <span className="border-border font-pixel tracking-label-sm text-muted-foreground hover:border-primary hover:text-foreground border px-2.5 py-1 text-[11px] transition-colors">
                           {item}
                         </span>
                       </li>
@@ -311,11 +311,11 @@ export default function PersonalPortfolio() {
         <DitherDivider />
 
         {/* ── Contact ── */}
-        <Section id="contact" ariaLabel="Contacto" className="px-4 pb-28 pt-20 md:px-16">
+        <Section id="contact" ariaLabel="Contacto" className="px-4 pt-20 pb-28 md:px-16">
           <div className="mx-auto max-w-4xl text-center">
             <SectionLabel>Contacto</SectionLabel>
             <SectionTitle>Conversemos</SectionTitle>
-            <p className="mb-6 mt-3 text-body-md tracking-body text-muted-foreground">
+            <p className="text-body-md tracking-body text-muted-foreground mt-3 mb-6">
               Siempre abierto a conversar sobre tecnología, IoT, minería o cualquier proyecto
               interesante.
             </p>
@@ -325,7 +325,7 @@ export default function PersonalPortfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Contactar por LinkedIn"
-                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-pixel text-[11px] uppercase tracking-label-sm text-foreground transition-colors hover:border-primary"
+                className="btn-chamfer hover:bg-dither-teal border-border font-pixel tracking-label-sm text-foreground hover:border-primary inline-flex items-center gap-2 border px-4 py-2 text-[11px] uppercase transition-colors"
               >
                 <LinkedInIcon className="h-3.5 w-3.5" aria-hidden="true" />
                 LinkedIn
@@ -335,7 +335,7 @@ export default function PersonalPortfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Ver perfil de GitHub"
-                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-pixel text-[11px] uppercase tracking-label-sm text-foreground transition-colors hover:border-primary"
+                className="btn-chamfer hover:bg-dither-teal border-border font-pixel tracking-label-sm text-foreground hover:border-primary inline-flex items-center gap-2 border px-4 py-2 text-[11px] uppercase transition-colors"
               >
                 <GitHubIcon className="h-3.5 w-3.5" aria-hidden="true" />
                 GitHub
@@ -343,7 +343,7 @@ export default function PersonalPortfolio() {
               <a
                 href="mailto:ignacio@archidemus.me"
                 aria-label="Enviar email a ignacio@archidemus.me"
-                className="btn-chamfer hover:bg-dither-teal inline-flex items-center gap-2 border border-border px-4 py-2 font-pixel text-[11px] uppercase tracking-label-sm text-foreground transition-colors hover:border-primary"
+                className="btn-chamfer hover:bg-dither-teal border-border font-pixel tracking-label-sm text-foreground hover:border-primary inline-flex items-center gap-2 border px-4 py-2 text-[11px] uppercase transition-colors"
               >
                 <Mail className="h-3.5 w-3.5" aria-hidden="true" />
                 Email
@@ -354,15 +354,15 @@ export default function PersonalPortfolio() {
       </main>
 
       {/* ── Footer ── */}
-      <footer className="border-t border-border py-6">
+      <footer className="border-border border-t py-6">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-4 md:px-16">
-          <p className="font-pixel text-[11px] tracking-label-sm text-muted-foreground">
+          <p className="font-pixel tracking-label-sm text-muted-foreground text-[11px]">
             &copy;{" "}
             <time dateTime={new Date().getFullYear().toString()}>{new Date().getFullYear()}</time>{" "}
             Ignacio Norambuena
           </p>
           <span
-            className="animate-pixel-pulse inline-block h-2 w-2 border border-primary bg-primary"
+            className="animate-pixel-pulse border-primary bg-primary inline-block h-2 w-2 border"
             aria-hidden="true"
           />
         </div>
