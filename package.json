@@ -8,21 +8,26 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "gen:og": "bun run scripts/og.mjs",
     "format": "prettier --write \"src/**/*.{astro,tsx,ts,css,mjs}\"",
     "format:check": "prettier --check \"src/**/*.{astro,tsx,ts,css,mjs}\"",
-    "lint": "eslint \"src/**/*.{ts,tsx,astro}\"",
-    "lint:fix": "eslint --fix \"src/**/*.{ts,tsx,astro}\"",
-    "check": "prettier --check \"src/**/*.{astro,tsx,ts,css,mjs}\" && eslint \"src/**/*.{ts,tsx,astro}\" && astro check && astro build",
-    "fix": "prettier --write \"src/**/*.{astro,tsx,ts,css,mjs}\" && eslint --fix \"src/**/*.{ts,tsx,astro}\""
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "check": "prettier --check \"src/**/*.{astro,tsx,ts,css,mjs}\" && oxlint && astro check && astro build",
+    "fix": "prettier --write \"src/**/*.{astro,tsx,ts,css,mjs}\" && oxlint --fix",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "quality:local": "oxlint && prettier --check \"src/**/*.{astro,tsx,ts,js,jsx,css,mjs}\" && vitest run --coverage",
+    "typecheck": "astro check"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.9",
-    "@astrojs/react": "^5.0.4",
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/react": "^5.0.7",
     "@astrojs/tailwind": "^6.0.2",
-    "@types/react": "^18.3.28",
+    "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
-    "astro": "^6.3.1",
-    "lucide-react": "^1.14.0",
+    "astro": "^6.4.8",
+    "lucide-react": "^1.31.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.19",
@@ -30,13 +35,13 @@
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "eslint": "^10.3.0",
-    "eslint-plugin-astro": "^1.7.0",
-    "eslint-plugin-react": "^7.37.5",
-    "prettier": "^3.8.3",
+    "@resvg/resvg-js": "^2.6.2",
+    "@vitest/coverage-v8": "^4.1.10",
+    "lefthook": "^2.1.10",
+    "oxlint": "^1.78.0",
+    "prettier": "^3.9.6",
     "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.8.0",
-    "typescript-eslint": "^8.59.2"
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "vitest": "^4.1.10"
   }
 }

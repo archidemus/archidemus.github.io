@@ -1,0 +1,24 @@
+# Estándar SCA — ignorados documentados (osv-scanner).
+# Todas son transitivas de astro@6 y no tienen fix disponible dentro de la
+# versión soportada: @astrojs/tailwind@6 declara peer astro ^3-^5, así que
+# astro 7 (donde están los fixes) requiere migrar a @tailwindcss/vite.
+# Seguimiento: migrar a astro@7 + tailwind@4 y borrar estas entradas.
+[[IgnoredVulns]]
+id = "GHSA-4g3v-8h47-v7g6"
+reason = "Transitiva de astro@6. Fix en astro 7.x. Pendiente migración de @astrojs/tailwind."
+
+[[IgnoredVulns]]
+id = "GHSA-7pw4-f3q4-r2p2"
+reason = "Transitiva de astro@6. Fix en astro 7.x. Pendiente migración de @astrojs/tailwind."
+
+[[IgnoredVulns]]
+id = "GHSA-f48w-9m4c-m7f5"
+reason = "Transitiva de astro@6. Fix en astro 7.x. Pendiente migración de @astrojs/tailwind."
+
+[[IgnoredVulns]]
+id = "GHSA-f88m-g3jw-g9cj"
+reason = "sharp es dependencia opcional de astro@6 (imagenes). Fix en 0.35.0, bloqueado por astro 6."
+
+[[IgnoredVulns]]
+id = "GHSA-g7r4-m6w7-qqqr"
+reason = "esbuild transitivo de vite/astro@6. Fix en 0.28.1, bloqueado por astro 6."

@@ -1,0 +1,44 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "react", "unicorn", "import", "jsx-a11y"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error",
+    "perf": "warn"
+  },
+  "env": {
+    "browser": true,
+    "es2022": true
+  },
+  "rules": {
+    "no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "typescript/no-explicit-any": "warn",
+    "no-console": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.astro"],
+      "rules": {
+        "no-unassigned-import": "off"
+      }
+    },
+    {
+      "files": ["scripts/**", "**/*.cli.{ts,tsx,js,jsx}", "**/*.mjs"],
+      "rules": {
+        "no-console": "off"
+      }
+    },
+    {
+      "files": ["**/*.test.{ts,tsx,js,jsx}", "**/test/**"],
+      "plugins": ["vitest"],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ],
+  "ignorePatterns": ["dist/**", "node_modules/**", ".astro/**", "*.d.ts"]
+}

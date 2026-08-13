@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import me from "@/assets/me.webp";
 import { Mail, ArrowDown, ExternalLink } from "lucide-react";
+import { projects, stackGroups } from "@/data/portfolio";
 
 /* ── Icons ── */
 
@@ -72,7 +73,8 @@ function Section({
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <span className="font-pixel text-[11px] uppercase tracking-label-sm text-primary">
-      // {children}
+      {"// "}
+      {children}
     </span>
   );
 }
@@ -94,43 +96,6 @@ function DitherDivider() {
 }
 
 /* ── Data ── */
-
-const projects = [
-  {
-    title: "Zentia",
-    featured: true,
-    description: "Sistema de monitoreo del ciclo minero basado en IoT",
-    details:
-      "Red de sensores autónomos BLE que trackea personas, equipos y variables ambientales en tiempo real bajo tierra.",
-    role: "CTO y co-fundador. Arquitectura full-stack: firmware C++, backend, frontend. MVP construido 100% por mí.",
-  },
-  {
-    title: "CPS Ingeniería",
-    featured: false,
-    description: "Automatización operacional para empresa de ingeniería eléctrica fundada en 1997",
-    details:
-      "Sistemas de automatización para minería. Pipeline automático de licitaciones. Cotizador paramétrico. Mejoras de productividad con IA.",
-  },
-];
-
-const stackGroups = [
-  {
-    label: "Full-stack",
-    items: ["React 19", "TypeScript", "Astro", "Tailwind", "Hono", "Bun"],
-  },
-  {
-    label: "IoT & Embedded",
-    items: ["C++", "PlatformIO", "ESP32", "BLE"],
-  },
-  {
-    label: "Data & Backend",
-    items: ["PostgreSQL", "Supabase", "Python"],
-  },
-  {
-    label: "Automatización",
-    items: ["Claude Code", "Playwright", "Pipelines IMAP", "GitHub Actions"],
-  },
-];
 
 /* ── Main Component ── */
 
@@ -266,11 +231,10 @@ export default function PersonalPortfolio() {
           <div className="mx-auto max-w-4xl">
             <SectionLabel>Proyectos</SectionLabel>
             <SectionTitle>Proyectos</SectionTitle>
-            <div className="mt-6 space-y-4" role="list" aria-labelledby="projects-title">
+            <div className="mt-6 space-y-4" aria-labelledby="projects-title">
               {projects.map((project) => (
                 <article
                   key={project.title}
-                  role="listitem"
                   className={`pixel-card inner-glow border p-6 ${
                     project.featured ? "border-primary" : "border-border"
                   }`}

@@ -1,0 +1,38 @@
+# Estándar Betterleaks — hereda las reglas por defecto y filtra falsos positivos
+# comunes del contexto local (mocks, ejemplos, placeholders, autor renovate).
+
+title = "Estándar Betterleaks"
+
+minVersion = "v8.25.0"
+betterleaksMinVersion = "v1.7.4"
+
+[extend]
+useDefault = true
+
+# Filtro global: descarta candidatos que claramente no son secrets.
+filter = '''
+(
+    filter.matchesAny(attributes["path"], [
+        `^tests/`,
+        `^fixtures/`,
+        `^docs/`,
+        `(?i)\.(?:example|sample|fixture|mock)s?\.`
+    ]) &&
+    filter.containsAny(finding["line"], ["example", "placeholder", "lorem", "changeme", "xxxx", "TODO"])
+)
+||
+(
+    filter.containsAny(finding["secret"], [
+        "EXAMPLE",
+        "CHANGEME",
+        "YOUR_",
+        "0000000000000000",
+        "1234567890"
+    ])
+)
+||
+(
+    filter.entropy(finding["secret"]) <= 2.5 &&
+    filter.failsTokenEfficiency(finding["secret"])
+)
+'''

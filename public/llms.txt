@@ -2,6 +2,8 @@
 
 > Sitio personal de Ignacio Norambuena, Ingeniero Civil Informático (UTFSM) y Co-fundador & CTO de Zentia.
 
+- [llms-full.txt](https://archidemus.me/llms-full.txt): Perfil expandido, denso y apto para citación — identidad, trayectoria, proyectos, stack.
+
 ## Sobre mí
 
 Ing. Civil Informático de la UTFSM con 8 años de experiencia en desarrollo de software. Pasé por fintech (Penta), startups (Centry), y lideré equipos como tech lead en Unholster. Fui CPO de Trazit (ex Cumpl.io), startup seleccionada en Start-Up Chile SUP 10 (Build).

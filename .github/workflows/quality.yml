@@ -1,0 +1,45 @@
+# Estándar de Calidad (estandar/configs/ci/quality.yml) — ajustado para este repo
+# (solo JS/TS; sin job Python).
+
+name: Calidad y seguridad
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  javascript:
+    name: JS/TS · lint + format + typecheck + test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bun run lint
+      - run: bun run format:check
+      - run: bun run typecheck
+      - run: bun run test
+
+  security:
+    name: Seguridad · semgrep + osv-scanner + betterleaks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+
+      - name: SAST (semgrep)
+        run: uvx semgrep scan --config semgrep.yaml --error .
+
+      - name: SCA (osv-scanner)
+        uses: google/osv-scanner/actions/scanner@v2
+        with:
+          scan-args: "-r ."
+
+      - name: Secrets (betterleaks, historia git completa)
+        run: |
+          brew install betterleaks
+          betterleaks git .

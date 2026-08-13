@@ -1,0 +1,132 @@
+# Estándar Semgrep — reglas locales (funcionan sin login).
+# Para OWASP Top 10 completo: uvx semgrep scan --config p/owasp-top-ten --oss-only .
+# Ejecución local: uvx semgrep scan --config semgrep.yaml --error .
+rules:
+  # ── Python ──────────────────────────────────────────────────────────────
+  - id: python.sql-string-concat
+    languages: [python]
+    severity: ERROR
+    message: "Posible SQL injection: consulta construida por concatenación. Usa parámetros con ? o %s."
+    metadata:
+      cwe: ["CWE-89"]
+    patterns:
+      - pattern-either:
+          - pattern: $DB.$METHOD($X + $Y)
+          - pattern: $DB.$METHOD(f"...")
+          - pattern: $DB.$METHOD(... % $X)
+      - metavariable-regex:
+          metavariable: $METHOD
+          regex: execute|executemany|query|raw
+    fix: Usar queries parametrizadas.
+
+  - id: python.subprocess-shell
+    languages: [python]
+    severity: ERROR
+    message: shell=True habilita command injection. Pasa args como lista sin shell.
+    metadata:
+      cwe: ["CWE-78"]
+    patterns:
+      - pattern-either:
+          - pattern: subprocess.run(..., shell=True)
+          - pattern: subprocess.call(..., shell=True)
+          - pattern: subprocess.Popen(..., shell=True)
+          - pattern: os.system(...)
+
+  - id: python.eval-exec
+    languages: [python]
+    severity: WARNING
+    message: eval/exec con datos no confiables es code injection.
+    metadata:
+      cwe: ["CWE-95"]
+    patterns:
+      - pattern-either:
+          - pattern: eval($X)
+          - pattern: exec($X)
+
+  - id: python.pickle-load
+    languages: [python]
+    severity: ERROR
+    message: pickle de datos no confiables puede ejecutar código arbitrario. Usa un formato seguro (json).
+    metadata:
+      cwe: ["CWE-502"]
+    patterns:
+      - pattern-either:
+          - pattern: pickle.load(...)
+          - pattern: pickle.loads(...)
+
+  - id: python.requests-http
+    languages: [python]
+    severity: WARNING
+    message: Petición HTTP sin TLS. Usa https://.
+    metadata:
+      cwe: ["CWE-319"]
+    patterns:
+      - pattern: requests.$M("$URL")
+      - metavariable-regex:
+          metavariable: $M
+          regex: get|post|put|patch|delete
+      - metavariable-regex:
+          metavariable: $URL
+          regex: ^http://
+
+  # ── JavaScript / TypeScript ─────────────────────────────────────────────
+  - id: js.dom-xss
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: innerHTML/outerHTML con datos no confiables es DOM XSS. Usa textContent o escapa.
+    metadata:
+      cwe: ["CWE-79"]
+    patterns:
+      - pattern-either:
+          - pattern: $ELEM.innerHTML = $X
+          - pattern: $ELEM.insertAdjacentHTML(..., $X)
+          - pattern: $ELEM.outerHTML = $X
+      - pattern-not: $ELEM.innerHTML = "..."
+      - pattern-not: $ELEM.outerHTML = "..."
+
+  - id: js.eval
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: eval con datos no confiables es code injection.
+    metadata:
+      cwe: ["CWE-95"]
+    patterns:
+      - pattern: eval($X)
+
+  - id: js.child-process-exec
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: exec/execSync con interpolación es command injection. Usa execFile o spawn con array.
+    metadata:
+      cwe: ["CWE-78"]
+    patterns:
+      - pattern-either:
+          - pattern: child_process.exec($X)
+          - pattern: child_process.execSync($X)
+          - pattern: require("child_process").exec($X)
+          - pattern: require("child_process").execSync($X)
+
+  - id: js.shell-command-concat
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: Comando shell construido por concatenación. Usa execFile/spawn con argumentos separados.
+    metadata:
+      cwe: ["CWE-78"]
+    patterns:
+      - pattern-either:
+          - pattern: $EXEC(`...${$X}...`)
+          - pattern: $EXEC("..." + $X)
+          - pattern: $EXEC($X + "...")
+      - metavariable-regex:
+          metavariable: $EXEC
+          regex: exec|execSync|spawn|spawnSync
+
+  - id: js.jwt-none-algorithm
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: Algoritmo JWT 'none' invalida la verificación de firma.
+    metadata:
+      cwe: ["CWE-347"]
+    patterns:
+      - pattern: >-
+          jsonwebtoken.verify($TOKEN, $KEY, { algorithms: ["none"] })
