@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "gen:og": "bun run scripts/og.mjs",
+    "gen:favicon": "bun run scripts/favicon.mjs",
     "format": "prettier --write \"src/**/*.{astro,tsx,ts,js,jsx,css,mjs}\" \"scripts/**/*.mjs\" \"*.config.ts\" \"vitest.config.ts\"",
     "format:check": "prettier --check \"src/**/*.{astro,tsx,ts,js,jsx,css,mjs}\" \"scripts/**/*.mjs\" \"*.config.ts\" \"vitest.config.ts\"",
     "lint": "oxlint",

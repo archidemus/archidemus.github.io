@@ -24,6 +24,15 @@ describe("projects", () => {
       expect(project.role?.trim().length).toBeGreaterThan(0);
     }
   });
+
+  it("las URLs de proyecto son https válidas", () => {
+    const urls = projects.map((p) => p.url).filter((url): url is string => !!url);
+    expect(urls.length).toBeGreaterThan(0);
+    for (const url of urls) {
+      expect(url.startsWith("https://")).toBe(true);
+      expect(new URL(url).hostname.length).toBeGreaterThan(0);
+    }
+  });
 });
 
 describe("stackGroups", () => {

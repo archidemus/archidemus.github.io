@@ -1,6 +1,6 @@
 # archidemus.me
 
-Sitio web personal de [Ignacio Norambuena](https://www.linkedin.com/in/inorambuenaa) — Ing. Civil Informático UTFSM, Co-fundador & CTO de [Zentia](https://zentia.pages.dev).
+Sitio web personal de [Ignacio Norambuena](https://www.linkedin.com/in/inorambuenaa) — Ing. Civil Informático UTFSM, Co-fundador & CTO de [Zentia](https://zentialab.cl).
 
 ## Stack
 

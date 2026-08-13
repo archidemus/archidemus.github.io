@@ -238,9 +238,23 @@ export default function PersonalPortfolio() {
                 >
                   {/* Header row */}
                   <div className="mb-3 flex items-start justify-between">
-                    <h3 className="font-pixel tracking-headline text-foreground text-base sm:text-lg">
-                      {project.title}
-                    </h3>
+                    {project.url ? (
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Visitar el sitio de ${project.title}`}
+                        className="hover:text-primary focus-visible:ring-primary rounded-sm transition-colors outline-none focus-visible:ring-2"
+                      >
+                        <h3 className="font-pixel tracking-headline text-foreground text-base sm:text-lg">
+                          {project.title}
+                        </h3>
+                      </a>
+                    ) : (
+                      <h3 className="font-pixel tracking-headline text-foreground text-base sm:text-lg">
+                        {project.title}
+                      </h3>
+                    )}
                     <div className="flex items-center gap-2">
                       {project.featured && (
                         <span className="animate-pixel-pulse border-primary font-pixel tracking-label-sm text-primary inline-flex items-center gap-1.5 border px-2 py-0.5 text-[10px] uppercase">
@@ -251,10 +265,12 @@ export default function PersonalPortfolio() {
                           Destacado
                         </span>
                       )}
-                      <ExternalLink
-                        className="text-muted-foreground h-3.5 w-3.5 shrink-0"
-                        aria-hidden="true"
-                      />
+                      {project.url && (
+                        <ExternalLink
+                          className="text-muted-foreground h-3.5 w-3.5 shrink-0"
+                          aria-hidden="true"
+                        />
+                      )}
                     </div>
                   </div>
 

@@ -4,6 +4,7 @@ export interface Project {
   description: string;
   details: string;
   role?: string;
+  url?: string;
 }
 
 export interface StackGroup {
@@ -19,6 +20,7 @@ export const projects: Project[] = [
     details:
       "Red de sensores autónomos BLE que trackea personas, equipos y variables ambientales en tiempo real bajo tierra.",
     role: "CTO y co-fundador. Arquitectura full-stack: firmware C++, backend, frontend. MVP construido 100% por mí.",
+    url: "https://zentialab.cl",
   },
   {
     title: "CPS Ingeniería",
@@ -26,6 +28,7 @@ export const projects: Project[] = [
     description: "Automatización operacional para empresa de ingeniería eléctrica fundada en 1997",
     details:
       "Sistemas de automatización para minería. Pipeline automático de licitaciones. Cotizador paramétrico. Mejoras de productividad con IA.",
+    url: "https://www.cpsingenieria.cl",
   },
 ];
 
