@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import me from "@/assets/me.webp";
 import { Mail, ArrowDown, ExternalLink } from "lucide-react";
-import { projects, stackGroups } from "@/data/portfolio";
+import { projects, stackGroups, experience } from "@/data/portfolio";
 
 /* ── Icons ── */
 
@@ -119,7 +119,7 @@ export default function PersonalPortfolio() {
               Proyectos
             </a>
             <a href="#stack" className="hover:text-primary transition-colors">
-              Stack
+              Capacidades
             </a>
             <a href="#contact" className="hover:text-primary transition-colors">
               Contacto
@@ -156,12 +156,34 @@ export default function PersonalPortfolio() {
               <span className="animate-blink bg-primary inline-block h-3.5 w-2 align-middle" />
             </p>
 
-            <p className="text-body-md tracking-body text-muted-foreground mx-auto mt-4 mb-8 max-w-lg">
-              Apasionado por crear soluciones tecnológicas que impactan.
+            <p className="text-muted-foreground mx-auto mb-6 max-w-xl text-sm leading-relaxed">
+              Combino ingeniería, visión de producto e IA aplicada. Trabajo con equipos que
+              necesitan convertir procesos complejos en productos, automatizaciones y sistemas
+              confiables.
             </p>
 
+            <p className="text-body-md tracking-body text-muted-foreground mx-auto mt-4 mb-8 max-w-lg">
+              Construyo sistemas tecnológicos completos: desde firmware y sensores hasta software,
+              datos y operación industrial.
+            </p>
+
+            <div className="mb-12 flex flex-wrap justify-center gap-3">
+              <a
+                href="#projects"
+                className="btn-chamfer bg-primary text-primary-foreground hover:bg-accent font-pixel tracking-label-sm inline-flex items-center gap-2 px-4 py-2 text-[11px] uppercase transition-colors"
+              >
+                Ver lo que estoy construyendo
+              </a>
+              <a
+                href="#contact"
+                className="btn-chamfer hover:bg-dither-teal border-border font-pixel tracking-label-sm text-foreground hover:border-primary inline-flex items-center gap-2 border px-4 py-2 text-[11px] uppercase transition-colors"
+              >
+                Conversemos
+              </a>
+            </div>
+
             {/* Social links — chamfered pixel buttons */}
-            <div className="mb-12 flex justify-center gap-3">
+            <div className="flex justify-center gap-3">
               <a
                 href="https://www.linkedin.com/in/inorambuenaa"
                 target="_blank"
@@ -201,13 +223,13 @@ export default function PersonalPortfolio() {
         <Section id="about" ariaLabel="Sobre mí" className="px-4 py-20 md:px-16">
           <div className="mx-auto max-w-4xl">
             <SectionLabel>Sobre mí</SectionLabel>
-            <SectionTitle>Sobre mí</SectionTitle>
+            <SectionTitle>Ingeniería con visión de producto</SectionTitle>
             <div className="text-body-md tracking-body text-muted-foreground sm:text-body-lg mt-6 space-y-4">
               <p>
-                Ing. Civil Informático de la UTFSM con 8 años de experiencia en desarrollo de
-                software. Pasé por fintech (Penta), startups (Centry), y lideré equipos como tech
-                lead en Unholster, donde desarrollé plataformas con diversas tecnologías. Fui CPO de
-                Trazit (ex Cumpl.io), startup seleccionada en Start-Up Chile SUP 10 (Build).
+                Soy Ingeniero Civil Informático de la UTFSM y desarrollo productos desde 2014,
+                cuando comencé con proyectos independientes. Mi recorrido une transformación digital
+                en finanzas, visualización de datos públicos, liderazgo de ingeniería y dirección de
+                producto en startups.
               </p>
               <p>
                 Hoy soy CTO y co-fundador de&nbsp;
@@ -216,6 +238,12 @@ export default function PersonalPortfolio() {
                 <span className="text-foreground">CPS Ingeniería</span> — empresa familiar de
                 ingeniería eléctrica — donde diseñamos soluciones para clientes como Anglo American
                 y CODELCO.
+              </p>
+              <p>
+                En todos mis proyectos aplico intensamente herramientas de inteligencia artificial:
+                para construir más rápido, automatizar operaciones y convertir ideas complejas en
+                sistemas funcionales. Combino ese uso avanzado con investigación con usuarios,
+                criterio de arquitectura y experiencia llevando productos a producción.
               </p>
             </div>
           </div>
@@ -227,7 +255,7 @@ export default function PersonalPortfolio() {
         <Section id="projects" ariaLabel="Proyectos" className="px-4 py-20 md:px-16">
           <div className="mx-auto max-w-4xl">
             <SectionLabel>Proyectos</SectionLabel>
-            <SectionTitle>Proyectos</SectionTitle>
+            <SectionTitle>Sistemas que estoy construyendo</SectionTitle>
             <div className="mt-6 space-y-4">
               {projects.map((project) => (
                 <article
@@ -295,20 +323,19 @@ export default function PersonalPortfolio() {
         <DitherDivider />
 
         {/* ── Stack ── */}
-        <Section
-          id="stack"
-          ariaLabel="Stack tecnológico y habilidades"
-          className="px-4 py-20 md:px-16"
-        >
+        <Section id="stack" ariaLabel="Capacidades" className="px-4 py-20 md:px-16">
           <div className="mx-auto max-w-4xl">
-            <SectionLabel>Stack</SectionLabel>
-            <SectionTitle>Stack y habilidades</SectionTitle>
+            <SectionLabel>Capacidades</SectionLabel>
+            <SectionTitle>Cómo puedo aportar</SectionTitle>
             <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {stackGroups.map((group) => (
                 <div key={group.label} className="inner-glow border-border border p-5">
                   <h3 className="font-pixel tracking-label-sm text-primary mb-3 text-[11px] uppercase">
                     {group.label}
                   </h3>
+                  <p className="text-muted-foreground mb-5 text-sm leading-relaxed">
+                    {group.description}
+                  </p>
                   <ul className="flex flex-wrap gap-2" aria-label={`Habilidades en ${group.label}`}>
                     {group.items.map((item) => (
                       <li key={item} className="chip">
@@ -326,14 +353,39 @@ export default function PersonalPortfolio() {
 
         <DitherDivider />
 
+        <Section
+          id="experience"
+          ariaLabel="Trayectoria profesional"
+          className="px-4 py-20 md:px-16"
+        >
+          <div className="mx-auto max-w-4xl">
+            <SectionLabel>Trayectoria</SectionLabel>
+            <SectionTitle>Del código a las decisiones de producto</SectionTitle>
+            <ol className="border-border mt-8 space-y-8 border-l pl-6">
+              {experience.map((entry) => (
+                <li key={entry.company}>
+                  <p className="text-primary mb-2 text-xs">{entry.period}</p>
+                  <h3 className="text-foreground text-lg font-medium">{entry.company}</h3>
+                  <p className="text-foreground mt-1 text-sm">{entry.role}</p>
+                  <p className="text-muted-foreground mt-3 max-w-2xl text-sm leading-relaxed">
+                    {entry.description}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </Section>
+
+        <DitherDivider />
+
         {/* ── Contact ── */}
         <Section id="contact" ariaLabel="Contacto" className="px-4 pt-20 pb-28 md:px-16">
           <div className="mx-auto max-w-4xl text-center">
             <SectionLabel>Contacto</SectionLabel>
             <SectionTitle>Conversemos</SectionTitle>
             <p className="text-body-md tracking-body text-muted-foreground mt-3 mb-6">
-              Siempre abierto a conversar sobre tecnología, IoT, minería o cualquier proyecto
-              interesante.
+              Si estás intentando llevar una idea técnica a producción, automatizar una operación o
+              entender cómo aplicar IA e IoT en terreno, escríbeme.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <a
