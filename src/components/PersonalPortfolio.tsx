@@ -167,7 +167,7 @@ export default function PersonalPortfolio() {
               datos y operación industrial.
             </p>
 
-            <div className="mb-12 flex flex-wrap justify-center gap-3">
+            <div className="mb-4 flex flex-wrap justify-center gap-3">
               <a
                 href="#projects"
                 className="btn-chamfer bg-primary text-primary-foreground hover:bg-accent font-pixel tracking-label-sm inline-flex items-center gap-2 px-4 py-2 text-[11px] uppercase transition-colors"
@@ -210,7 +210,7 @@ export default function PersonalPortfolio() {
             <a
               href="#about"
               aria-label="Ir a sección Sobre mí"
-              className="text-muted-foreground hover:text-primary inline-block transition-colors"
+              className="text-muted-foreground hover:text-primary mt-8 inline-block transition-colors"
             >
               <ArrowDown className="mx-auto h-4 w-4 animate-bounce" aria-hidden="true" />
             </a>
